@@ -91,56 +91,115 @@
           class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
         />
       </div>
+      
+    <a href="/">
       <div
-        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-      >
-      <a href="/">
-
-
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <i class="bi bi-house-door-fill"></i>
         <span class="text-[15px] ml-4 text-gray-200 font-bold">Home</span>
-        </a>
       </div>
+    </a>
 
+    <a href="/main">
       <div
-        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-      >
-        <i class="bi bi-bookmark-fill"></i>
-        <span class="text-[15px] ml-4 text-gray-200 font-bold">Bookmark</span>
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+        <i class="fas fa-solid fa-desktop"></i>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold">Ingreso</span>
       </div>
-      <div class="my-4 bg-gray-600 h-[1px]"></div>
-      <div
+    </a>
+      
+<!-- Menu -->
+       <div
         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-        onclick="dropdown()"
-      >
-        <i class="bi bi-gear-fill"></i>
+        onclick="dropdown()">
+        <i class="bi bi-box-seam"></i>
         <div class="flex justify-between w-full items-center">
-          <span class="text-[15px] ml-4 text-gray-200 font-bold">Administración</span>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold">Logistica</span>
           <span class="text-sm rotate-180" id="arrow">
             <i class="bi bi-chevron-down"></i>
           </span>
         </div>
       </div>
-      <div
-        class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold"
-        id="submenu"
-      >
-        <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-          Social
-        </h1>
-        <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-          Personal
-        </h1>
-        <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-          Friends
-        </h1>
-      </div>
+                <div
+                  class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold"
+                  id="submenu"
+                >
+                  <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Social
+                  </h1>
+                  <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Personal
+                  </h1>
+                  <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Friends
+                  </h1>
+                </div>
+
+<!--- Menu --->
       <div
         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-      >
-        <i class="bi bi-box-arrow-in-right"></i>
-        <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
+        onclick="dropdown3()">
+        <i class="bi bi-file-earmark-bar-graph"></i>
+        <div class="flex justify-between w-full items-center">
+          <span class="text-[15px] ml-4 text-gray-200 font-bold">Reportes</span>
+          <span class="text-sm rotate-180" id="arrow3">
+            <i class="bi bi-chevron-down"></i>
+          </span>
+        </div>
       </div>
+                <div
+                  class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold"
+                  id="submenu3"
+                >
+                  <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Social
+                  </h1>
+                  <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Personal
+                  </h1>
+                  <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Friends
+                  </h1>
+                </div>
+      
+<!-- Menu -->
+      <div
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+        onclick="dropdown2()">
+        <i class="bi bi-gear-fill"></i>
+        <div class="flex justify-between w-full items-center">
+          <span class="text-[15px] ml-4 text-gray-200 font-bold">Administración</span>
+          <span class="text-sm rotate-180" id="arrow2">
+            <i class="bi bi-chevron-down"></i>
+          </span>
+        </div>
+      </div>
+                <div
+                  class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold"
+                  id="submenu2"
+                >
+                  <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Social
+                  </h1>
+                  <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Personal
+                  </h1>
+                  <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Friends
+                  </h1>
+                </div>
+
+
+<!-- Menu -->
+      <a href="/logout">
+      <hr class="w-48 h-px mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+        <div
+          class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
+        </div>
+       </a>
+
     </aside>
  
  
@@ -153,6 +212,20 @@
         document.querySelector("#arrow").classList.toggle("rotate-0");
       }
       dropdown();
+
+      function dropdown2() {
+        document.querySelector("#submenu2").classList.toggle("hidden");
+        document.querySelector("#arrow2").classList.toggle("rotate-0");
+      }
+      dropdown2();
+
+      function dropdown3() {
+        document.querySelector("#submenu3").classList.toggle("hidden");
+        document.querySelector("#arrow3").classList.toggle("rotate-0");
+      }
+      dropdown3();
+
+      
 
       function openSidebar() {
         document.querySelector(".sidebar").classList.toggle("hidden");

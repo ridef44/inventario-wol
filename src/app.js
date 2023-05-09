@@ -7,11 +7,10 @@ const bodyParser = require('body-parser');
 const loginRoutes = require ('./routes/login');
 const mainRoutes = require('./routes/mainRoute');
 const { redirect } = require('express/lib/response');
-
-
-
-
 const app = express();
+
+
+
 app.set('port', 4000);
 
 //configuracion de plantillas
@@ -83,6 +82,8 @@ else {
 app.get('/', (req, res)=>{
   res.render('main')
 });
+
+
 
 
 
