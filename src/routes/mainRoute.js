@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get('/main', mainController.create);
 router.post('/main', mainController.upload.single('archivo'), mainController.store);
+router.get('/index', mainController.index);
+
 
 
 module.exports = router;

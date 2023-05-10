@@ -53,9 +53,29 @@ function store(req, res) {
   });
 }
 
+//Controlador para listar los equipos
+
+
+
+function index(req, res) {
+  req.getConnection((err, conn) => {
+    conn.query('SELECT *, DATE_FORMAT(fecha, "%d-%m-%Y") as fecha FROM inventario', (err, stock) => {
+      if(err) {
+        console.log(err)
+      }
+      res.render('mainViews/list', {stock}); // se corrige el paréntesis que cerraba mal
+
+    });
+  });
+}
+
+
+
+
 module.exports = {
     create,
     store,
-    upload
+    upload,
+    index
 
 }
