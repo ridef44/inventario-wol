@@ -2,11 +2,7 @@
 const multer = require('multer');
 const path = require('path');
 
-/*function create (req, res){
-    res.render('mainViews/main');
-}
-*/
-
+//Funcion para renderizar vista de creacion de equipos
 function create(req, res) {
   if (req.session.loggedIn) {
     let name = req.session.nombre;
@@ -19,10 +15,12 @@ function create(req, res) {
         }
       }
 
+
+
+// ---------------FUNCION PRINCIPAL DE CREACION DE ELEMENTOS---------------
 // Configuramos multer para almacenar los archivos en la carpeta 'uploads'
 
 const storage = multer.diskStorage({
-  
   destination: './public/facturas/',
   filename: function(req, file, cb) {
     const ext = path.extname(file.originalname);
@@ -47,16 +45,17 @@ function store(req, res) {
       if (err) {
         console.log(err);
       } else {
-        res.redirect('/');
+        res.redirect('/index');
       }
     });
   });
 }
+// ---------------FIM DE FUNCION PRINCIPAL DE CREACION DE ELEMENTOS---------------
+
+
+
 
 //Controlador para listar los equipos
-
-
-
 function index(req, res) {
   req.getConnection((err, conn) => {
     conn.query('SELECT *, DATE_FORMAT(fecha, "%d-%m-%Y") as fecha FROM inventario', (err, stock) => {
@@ -64,18 +63,56 @@ function index(req, res) {
         console.log(err)
       }
       res.render('mainViews/list', {stock}); // se corrige el paréntesis que cerraba mal
+      console.log(stock.filename)
 
+    });
+  });
+}
+
+//FUncion para eliminar los elementos
+/*function destroy(req, res) {
+  const id = req.body.id;
+
+  req.getConnection((err, conn) => {
+    conn.query('DELETE FROM inventario WHERE id = ?', [id], (err, rows) => {
+      res.redirect('/index');
+      console.log(id)
+     if(err){
+      console.log(err);
+     }
+    });
+  })
+}
+*/
+
+function destroy(req, res) {
+  const id = req.params.id;
+
+  req.getConnection((err, conn) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send('Error de servidor');
+    }
+
+    conn.query('DELETE FROM inventario WHERE id = ?', [id], (err, rows) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send('Error de servidor');
+      }
+
+      console.log(`Eliminado el registro con id: ${id}`);
+      res.redirect('/index');
     });
   });
 }
 
 
 
-
 module.exports = {
     create,
     store,
+    index,
     upload,
-    index
+    destroy
 
 }

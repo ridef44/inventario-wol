@@ -8,6 +8,7 @@ const loginRoutes = require ('./routes/login');
 const mainRoutes = require('./routes/mainRoute');
 const { redirect } = require('express/lib/response');
 const app = express();
+const methodOverride = require('method-override');
 
 
 
@@ -82,6 +83,8 @@ else {
 app.get('/', (req, res)=>{
   res.render('main')
 });
+
+app.use(methodOverride('_method'));
 
 
 
