@@ -1,0 +1,198 @@
+<body class="bg-gray-200">
+    <div class="w-full max-w-screen-md mx-auto mt-20 bg-white p-8 rounded-md shadow-md">
+        <p class="text-right text-gray-500 text-xs"> Bienvendo {{name}}</p>
+        <h1 class="text-2xl font-semibold mb-6 text-center">EDITAR EQUIPO</h1>
+       
+         <form action="/index/edit/{{stock.id}}" method="POST" class="mt-4" enctype="multipart/form-data">
+        <!--Aplicacion del RESPONSIVE*/-->
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">AGENCIA:</label>
+                    <input type="text" name="agencia" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese la agencia" value="{{stock.agencia}}">
+                    
+                </div>
+                <div class="mb-4">
+                  <label class="block font-medium mb-2">NOMBRE:</label>
+                    <input type="text" name="nombre"  
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el nombre" value="{{stock.nombre}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">DEPARTAMENTO:</label>
+                    <input type="text" name="departamento" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el departamento" value="{{stock.departamento}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">CORREO:</label>
+                    <input type="email" name="correo" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el correo" value="{{stock.correo}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">SERIE:</label>
+                    <input type="text" name="serie" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese la serie" value="{{stock.serie}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">CPU:</label>
+                    <input type="text" name="cpu" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el CPU" value="{{stock.cpu}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">RAM:</label>
+                    <input type="text" name="ram" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese la RAM" value="{{stock.ram}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">DISCO DURO:</label>
+                    <input type="text" name="disco_duro" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.disco_duro}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">MONITOR:</label>
+                    <input type="text" name="monitor" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.monitor}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">TECLADO:</label>
+                    <input type="text" name="teclado"  
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.teclado}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">MOUSE:</label>
+                    <input type="text" name="mouse" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.mouse}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">TABLETA:</label>
+                    <input type="text" name="tableta"
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.tableta}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">ADAPTADOR:</label>
+                    <input type="text" name="adaptador" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.adaptador}}">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">SO:</label>
+                    <input type="text" name="so"
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.so}}">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">TIPO DE LICENCIA:</label>
+                    <input type="text" name="licencia"
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.licencia}}">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">DIRECCIÓN IP:</label>
+                    <input type="text" name="direccion_ip"
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.direccion_ip}}">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">DIRECCIÓN IP WIFI:</label>
+                    <input type="text" name="direccion_ip_wifi" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.direccion_ip_wifi}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">MAC ADDRESS:</label>
+                    <input type="text" name="mac_address"
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.mac_address}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">MAC ADDRESS WIFI:</label>
+                    <input type="text" name="mac_address_wifi" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.mac_address_wifi}}">
+                </div>
+                 <div class="mb-4">
+                    <label class="block font-medium mb-2">No FACTURA:</label>
+                    <input type="text" name="factura"
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.factura}}">
+                </div>
+                 <div class="mb-4">
+                    <label class="block font-medium mb-2">COSTO Q.:</label>
+                    <input type="number" name="costo" step="0.01" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el costo" value="{{stock.costo}}">
+                </div>
+                 <div class="mb-4">
+                    <label class="block font-medium mb-2">FECHA:</label>
+                    <input type="DATE" name="fecha" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.fecha}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">PROVEEDOR:</label>
+                    <input type="text" name="proveedor" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.proveedor}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">VIA DE COMPRA:</label>
+                    <input type="text" name="via_compra" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.via_compra}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">GARANTIA:</label>
+                    <input type="text" name="garantia"
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.garantia}}">
+                </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">USUARIO (S) ANTERIOR (es):</label>
+                    <input type="text" name="usuario_anterior" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{usuario_anterior}}">
+                </div>
+                 <div class="mb-4">
+                    <label class="block font-medium mb-2">OTROS:</label>
+                    <input type="text" name="otro" 
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.otro}}">
+                </div>
+               <div class="mb-4">
+
+            <label class="block font-medium mb-2">FACTURA:</label>
+            <p>{{stock.filename}}</p>
+            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-sm cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
+                aria-describedby="file_input_help" id="file_input" type="file" name="archivo">
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PDF,SVG, PNG, JPG  (MAX. 800x400px).</p>
+            </div>
+
+                                    
+                                    
+                
+
+                <div class="mb-4 col-span-2">
+                    <label class="block font-medium mb-2">COMENTARIOS</label>
+                    <textarea name="comentario" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" rows="4" placeholder="Ingrese los comentarios">{{stock.comentario}}</textarea>
+                    </div>
+
+
+                <div class="fontmb-4 col-span-2 place-content-center text-center">
+                     <button type="submit" class="text-2xl mx-8 bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-md">Actualizar</button>
+                  &nbsp
+
+              
+                   
+                    <a href="/index" class="text-xl me-8 bg-purple-500 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md">Regresar</a>
+           
+                </div>
+            </div>
+                  
+            
+        
+        </form>
+      
+    </div>
+</body>
+
+<script>
+  // Obtener el elemento de entrada de archivo
+  const fileInput = document.getElementById('file_input');
+  
+  // Verificar si existe un nombre de archivo predefinido ({{stock.filename}})
+  if ("{{stock.filename}}") {
+    // Crear un objeto de archivo ficticio con el nombre predefinido
+    const file = new File([], "{{stock.filename}}");
+    
+    // Asignar el archivo ficticio al campo de entrada de archivo
+    fileInput.files = [file];
+  }
+</script>

@@ -25,10 +25,18 @@ const storage = multer.diskStorage({
   filename: function(req, file, cb) {
     const ext = path.extname(file.originalname);
     const filename = path.basename(file.originalname, ext);
-    const date = new Date().toString().replace(/:/g, '-');
-    cb(null, `${filename}-${date}${ext}`);
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
+    cb(null, `${filename}-${formattedDate}${ext}`);
   }
 });
+
 // Creamos una función que será utilizada para subir los archivos
 const upload = multer({ storage: storage });
 
@@ -60,30 +68,15 @@ function index(req, res) {
   req.getConnection((err, conn) => {
     conn.query('SELECT *, DATE_FORMAT(fecha, "%d-%m-%Y") as fecha FROM inventario', (err, stock) => {
       if(err) {
-        console.log(err)
+        console.log('HOLA')
       }
       res.render('mainViews/list', {stock}); // se corrige el paréntesis que cerraba mal
-      console.log(stock.filename)
-
+  
     });
   });
 }
 
 //FUncion para eliminar los elementos
-/*function destroy(req, res) {
-  const id = req.body.id;
-
-  req.getConnection((err, conn) => {
-    conn.query('DELETE FROM inventario WHERE id = ?', [id], (err, rows) => {
-      res.redirect('/index');
-      console.log(id)
-     if(err){
-      console.log(err);
-     }
-    });
-  })
-}
-*/
 
 function destroy(req, res) {
   const id = req.params.id;
@@ -106,6 +99,90 @@ function destroy(req, res) {
   });
 }
 
+// extrae los campos y los presenta en el form
+
+function edit(req, res) {
+  const id = req.params.id;
+
+  req.getConnection((err, conn) => {
+    conn.query('SELECT * FROM inventario WHERE id = ?', [id], (err, stock) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send('Error de servidor');
+      }
+
+      const formattedStock = {
+        ...stock[0],
+        fecha: formatDate(stock[0].fecha) // Formatear la fecha antes de pasarla al renderizado de la vista
+      };
+
+      res.render('mainViews/edit', { stock: formattedStock });
+    });
+  });
+}
+
+// Función para formatear la fecha en el formato yyyy-MM-dd
+function formatDate(date) {
+  const currentDate = new Date(date);
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+}
+
+function update(req, res) {
+  const itemId = req.params.id; // Obtén el ID del elemento a actualizar
+  let filename = '';
+
+  // Verificar si se ha subido un nuevo archivo
+  if (req.file) {
+    filename = req.file.filename;
+  }
+
+  const newData = {
+    ...req.body,
+    filename: filename
+  };
+
+  req.getConnection((err, conn) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send('Error en la conexión a la base de datos');
+    }
+
+    // Actualizar los campos en la tabla usando el ID del elemento
+    conn.query('UPDATE inventario SET ? WHERE id = ?', [newData, itemId], (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send('Error al actualizar el elemento');
+      }
+
+      res.redirect('/index');
+    });
+  });
+}
+
+function read(req, res) {
+  const id = req.params.id;
+
+  req.getConnection((err, conn) => {
+    conn.query('SELECT * FROM inventario WHERE id = ?', [id], (err, stock) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send('Error de servidor');
+      }
+
+      const formattedStock = {
+        ...stock[0],
+        fecha: formatDate(stock[0].fecha) // Formatear la fecha antes de pasarla al renderizado de la vista
+      };
+
+      res.render('mainViews/read', { stock: formattedStock });
+    });
+  });
+}
+
 
 
 module.exports = {
@@ -113,6 +190,10 @@ module.exports = {
     store,
     index,
     upload,
-    destroy
+    destroy,
+    edit,
+    update,
+    read
+  
 
 }

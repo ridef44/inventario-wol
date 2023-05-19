@@ -74,8 +74,8 @@ const bcrypt = require('bcrypt');
                       req.getConnection((err, conn) => {
                         conn.query('INSERT INTO user SET ?',[data], (err, rows) =>{
                           res.redirect('/');
-                          console.log(data);
-                          console.log(userdata.length)
+                          //console.log(data);
+                          //console.log(userdata.length)
                 
                           if (err) {
                             console.log(err);

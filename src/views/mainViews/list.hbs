@@ -9,18 +9,19 @@
   </div>
   <div class="overflow-x-auto rounded-md">
     <table class="table-auto w-full">
-      <thead>
+      <thead class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
         <tr class="rounded-md bg-gray-900 text-white">
           <th class="px-4 py-2 text-left">ID</th>
           <th class="px-4 py-2 text-left">AGENCIA</th>
           <th class="px-4 py-2 text-left">USUARIO</th>
+          <th class="px-4 py-2 text-left">CORREO</th>
           <th class="px-4 py-2 text-left">SERIE</th>
           <th class="px-4 py-2 text-left">CPU</th>
           <th class="px-4 py-2 text-left">FECHA</th>
           <th class="px-4 py-2 text-left">ANTERIOR</th>
           <th class="px-4 py-2 text-left">ARCHIVO</th>
 
-          <th class="px-4 py-2 text-left">ACCIONES</th>
+
         </tr>
       </thead>
       <tbody>
@@ -29,21 +30,17 @@
           <td class="py-3 px-6">{{id}}</td>
           <td class="p-3">{{agencia}}</td>
           <td class="p-3 text-center">{{nombre}}</td>
+          <td class="p-3 text-center">{{correo}}</td>
           <td class="p-3 text-center">{{serie}}</td>
           <td class="p-3 text-center">{{cpu}}</td>
           <td class="p-3 text-center">{{fecha}}</td>
           <td class="p-3 text-center">{{usuario_anterior}}</td>
-           <td>
-                        {{#if filename}}
-                        <a href="/facturas/{{filename}}" >DESC</a>
-                        {{else}}
-                        -
-                        {{/if}}
-                    </td>
+          
+      
           
         <td class="p-3 flex">
               <!-- Boton Ver -->
-              <a href="" class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700">
+              <a href="/index/read/{{id}}" class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700">
               <i class="bi bi-eye-fill"></i></a>
 
               <!-- Boton Eliminar 
@@ -56,8 +53,10 @@
 
 
              <!-- Boton Editar -->
-            <a href="" class="bg-blue-600 text-white mx-1 px-3 py-1 rounded-lg hover:bg-blue-700">
+            <a href="/index/edit/{{id}}" class="bg-blue-600 text-white mx-1 px-3 py-1 rounded-lg hover:bg-blue-700">
               <i class="fas fa-pen"></i></a>
+
+        
 
             <!-- Botón para eliminar un registro -->
 
@@ -122,8 +121,6 @@
     </div>
   </div>
 </div>
-
-
 
   <!-- NOTIFICACION -->
 <div class="fixed flex items-center hidden fixed z-10 bottom-0 right-0 mb-4 mr-4 bg-red-500 text-white py-2 px-4 rounded-md hidden" id="notificacion">
