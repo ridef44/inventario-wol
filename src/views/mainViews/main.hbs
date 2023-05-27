@@ -6,8 +6,15 @@
         <!--Aplicacion del RESPONSIVE*/-->
             <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">AGENCIA:</label>
-                    <input type="text" name="agencia" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese la agencia" required/>
+                 <!-- En tu vista -->
+                     <label class="block font-medium mb-2">AGENCIA:</label>
+                     <select name="id_agencia" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" required>
+                        <option value="">Seleccione una agencia</option>
+                        {{#each agencias}}
+                            <option value="{{this.id}}">{{this.nombre}}</option>
+                        {{/each}}
+                        </select>
+                  
                 </div>
                 <div class="mb-4">
                   <label class="block font-medium mb-2">NOMBRE:</label>

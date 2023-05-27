@@ -6,29 +6,42 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const loginRoutes = require ('./routes/login');
 const mainRoutes = require('./routes/mainRoute');
-const { redirect } = require('express/lib/response');
 const app = express();
 const methodOverride = require('method-override');
 
-
-
-app.set('port', 4000);
+app.set('port', process.env.PORT || 4000);
 
 //configuracion de plantillas
 app.set('views', __dirname + '/views');
+
+
+// Configuración de plantillas
+app.set('views', __dirname + '/views');
 app.engine('.hbs', engine({
-	extname: '.hbs',
-}));
-app.set('view engine', 'hbs');
+  extname: '.hbs',
+  defaultLayout: 'main',
+  partialsDir: __dirname + '/views/partials',
+  helpers: {
+    isEqual: function (value1, value2) {
+      return value1 === value2;
+    }
+  }
 
-app.use(bodyParser.urlencoded({
-  extended: true
+  
 }));
+app.set('view engine', '.hbs');
 
+
+// Configuración de body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Configuración de Multer
-
+// Configuración de sesión
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
 
 
 //Conexion a base de datos

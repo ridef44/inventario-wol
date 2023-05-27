@@ -3,6 +3,7 @@ const multer = require('multer');
 const path = require('path');
 
 //Funcion para renderizar vista de creacion de equipos
+/*
 function create(req, res) {
   if (req.session.loggedIn) {
     let name = req.session.nombre;
@@ -15,10 +16,35 @@ function create(req, res) {
         }
       }
 
+*/
+//Renderisa la vista principal para crear elementos y extrae los datos de la tabla agencia
+function create(req, res) {
+  if (req.session.loggedIn) {
+    req.getConnection((err, conn) => {
+      if (err) {
+        console.log(err);
+        return res.render('error', { message: 'Error de conexión a la base de datos' });
+      }
 
+      // Obtener las opciones de agencia desde la tabla "agencia"
+      conn.query('SELECT id, nombre FROM agencia', (err, rows) => {
+        if (err) {
+          console.log(err);
+          return res.render('error', { message: 'Error al obtener las opciones de agencia' });
+        }
+
+        let name = req.session.nombre;
+        res.render('mainViews/main', { name, agencias: rows });
+      });
+    });
+  } else {
+    res.redirect('/');
+    // user is not logged in.
+  }
+}
 
 // ---------------FUNCION PRINCIPAL DE CREACION DE ELEMENTOS---------------
-// Configuramos multer para almacenar los archivos en la carpeta 'uploads'
+// Configuramos multer para almacenar los archivos en la carpeta 'uploads' y formateamos la fecha para el ingreso de los archivos
 
 const storage = multer.diskStorage({
   destination: './public/facturas/',
@@ -61,9 +87,8 @@ function store(req, res) {
 // ---------------FIM DE FUNCION PRINCIPAL DE CREACION DE ELEMENTOS---------------
 
 
-
-
 //Controlador para listar los equipos
+/*
 function index(req, res) {
   req.getConnection((err, conn) => {
     conn.query('SELECT *, DATE_FORMAT(fecha, "%d-%m-%Y") as fecha FROM inventario', (err, stock) => {
@@ -75,6 +100,30 @@ function index(req, res) {
     });
   });
 }
+*/
+function index(req, res) {
+  req.getConnection((err, conn) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    conn.query('SELECT inventario.*, agencia.nombre AS nombre_agencia FROM inventario INNER JOIN agencia ON inventario.id_agencia = agencia.id', (err, rows) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      const stock = rows.map(row => ({
+        ...row,
+        fecha: formatDate(row.fecha) // Formatear la fecha utilizando una función formatDate
+      }));
+
+      res.render('mainViews/list', { stock });
+    });
+  });
+}
+
 
 //FUncion para eliminar los elementos
 
@@ -100,26 +149,57 @@ function destroy(req, res) {
 }
 
 // extrae los campos y los presenta en el form
-
 function edit(req, res) {
   const id = req.params.id;
 
   req.getConnection((err, conn) => {
-    conn.query('SELECT * FROM inventario WHERE id = ?', [id], (err, stock) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send('Error de servidor');
+    }
+
+    // Consulta para obtener los datos del inventario y el nombre de la agencia correspondiente
+    const queryStock = `
+      SELECT inventario.*, agencia.nombre AS nombre_agencia
+      FROM inventario
+      INNER JOIN agencia ON inventario.id_agencia = agencia.id
+      WHERE inventario.id = ?
+    `;
+
+    conn.query(queryStock, [id], (err, rowsStock) => {
       if (err) {
         console.log(err);
         return res.status(500).send('Error de servidor');
       }
 
-      const formattedStock = {
-        ...stock[0],
-        fecha: formatDate(stock[0].fecha) // Formatear la fecha antes de pasarla al renderizado de la vista
-      };
+      if (rowsStock.length === 0) {
+        return res.status(404).send('Inventario no encontrado');
+      }
 
-      res.render('mainViews/edit', { stock: formattedStock });
+      const stock = {
+        ...rowsStock[0],
+        fecha: formatDate(rowsStock[0].fecha) // Formatear la fecha antes de pasarla al renderizado de la vista
+      };
+      const nombreAgencia = stock.nombre_agencia;
+
+      // Consulta para obtener todas las agencias
+      const queryAgencias = 'SELECT id, nombre FROM agencia';
+      conn.query(queryAgencias, (err, rowsAgencias) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send('Error de servidor');
+        }
+
+        const agencias = rowsAgencias;
+
+        res.render('mainViews/edit', { stock, agencias, nombreAgencia });
+      });
     });
   });
 }
+
+
+
 
 // Función para formatear la fecha en el formato yyyy-MM-dd
 function formatDate(date) {
