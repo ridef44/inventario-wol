@@ -102,6 +102,10 @@ function index(req, res) {
 }
 */
 function index(req, res) {
+  if (!req.session.loggedIn) {
+    return res.redirect('/');
+  }
+
   req.getConnection((err, conn) => {
     if (err) {
       console.log(err);
@@ -119,10 +123,12 @@ function index(req, res) {
         fecha: formatDate(row.fecha) // Formatear la fecha utilizando una función formatDate
       }));
 
-      res.render('mainViews/list', { stock });
+      let name = req.session.nombre;
+      res.render('mainViews/list', { name, stock });
     });
   });
 }
+
 
 
 //FUncion para eliminar los elementos
@@ -150,15 +156,17 @@ function destroy(req, res) {
 
 // extrae los campos y los presenta en el form
 function edit(req, res) {
+  if (!req.session.loggedIn) {
+    return res.redirect('/');
+  }
+
   const id = req.params.id;
 
   req.getConnection((err, conn) => {
     if (err) {
-      console.log(err);
       return res.status(500).send('Error de servidor');
     }
-
-    // Consulta para obtener los datos del inventario y el nombre de la agencia correspondiente
+// Consulta para obtener los datos del inventario y el nombre de la agencia correspondiente
     const queryStock = `
       SELECT inventario.*, agencia.nombre AS nombre_agencia
       FROM inventario
@@ -168,7 +176,6 @@ function edit(req, res) {
 
     conn.query(queryStock, [id], (err, rowsStock) => {
       if (err) {
-        console.log(err);
         return res.status(500).send('Error de servidor');
       }
 
@@ -176,29 +183,30 @@ function edit(req, res) {
         return res.status(404).send('Inventario no encontrado');
       }
 
+      // Formatear la fecha antes de pasarla al renderizado de la vista
       const stock = {
         ...rowsStock[0],
-        fecha: formatDate(rowsStock[0].fecha) // Formatear la fecha antes de pasarla al renderizado de la vista
+        fecha: formatDate(rowsStock[0].fecha)
       };
-      const nombreAgencia = stock.nombre_agencia;
-
-      // Consulta para obtener todas las agencias
+       // Consulta para obtener todas las agencias
       const queryAgencias = 'SELECT id, nombre FROM agencia';
       conn.query(queryAgencias, (err, rowsAgencias) => {
         if (err) {
-          console.log(err);
           return res.status(500).send('Error de servidor');
         }
 
         const agencias = rowsAgencias;
+        const nombreAgencia = stock.nombre_agencia;
 
-        res.render('mainViews/edit', { stock, agencias, nombreAgencia });
+        agencias.forEach((agencia) => {
+          agencia.selected = agencia.id === stock.id_agencia;
+        });
+
+        res.render('mainViews/edit', { stock, agencias, nombreAgencia, name: req.session.nombre });
       });
     });
   });
 }
-
-
 
 
 // Función para formatear la fecha en el formato yyyy-MM-dd

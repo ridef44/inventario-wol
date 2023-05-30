@@ -9,14 +9,11 @@
 <div class="mb-4">
   <label class="block font-medium mb-2">AGENCIA:</label>
   <select name="id_agencia" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500">
-    {{#each agencias}}
-      <option value="{{ id }}" {{#isEqual id stock.id_agencia}}selected{{/isEqual}}>{{ nombre }}</option>
-    {{/each}}
+     {{#each agencias}}
+    <option value="{{id}}" {{#if selected}}selected{{/if}}>{{nombre}}</option>
+  {{/each}}
   </select>
 </div>
-
-
-
                 <div class="mb-4">
                   <label class="block font-medium mb-2">NOMBRE:</label>
                     <input type="text" name="nombre"  
@@ -151,6 +148,7 @@
                     <input type="text" name="otro" 
                     class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.otro}}">
                 </div>
+
                <div class="mb-4">
 
             <label class="block font-medium mb-2">FACTURA:</label>
@@ -159,6 +157,7 @@
                 aria-describedby="file_input_help" id="file_input" type="file" name="archivo">
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PDF,SVG, PNG, JPG  (MAX. 800x400px).</p>
             </div>
+            
 
                                     
                                     
@@ -168,6 +167,17 @@
                     <label class="block font-medium mb-2">COMENTARIOS</label>
                     <textarea name="comentario" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" rows="4" placeholder="Ingrese los comentarios">{{stock.comentario}}</textarea>
                     </div>
+                    
+                        <div class="mb-4 col-span-2">
+                            <label class="block font-medium mb-2">ACTIVO</label>
+                            <input type="radio" name="activo" value="1" class="form-radio h-5 w-5 text-blue-500" {{#if stock.activo}}checked{{/if}}>
+                            <span class="ml-2">Sí</span>
+                            <input type="radio" name="activo" value="0" class="form-radio h-5 w-5 text-blue-500" {{#unless stock.activo}}checked{{/unless}}>
+                            <span class="ml-2">No</span>
+                        </div>
+
+
+
 
 
                 <div class="fontmb-4 col-span-2 place-content-center text-center">
@@ -187,17 +197,3 @@
       
     </div>
 </body>
-
-<script>
-  // Obtener el elemento de entrada de archivo
-  const fileInput = document.getElementById('file_input');
-  
-  // Verificar si existe un nombre de archivo predefinido ({{stock.filename}})
-  if ("{{stock.filename}}") {
-    // Crear un objeto de archivo ficticio con el nombre predefinido
-    const file = new File([], "{{stock.filename}}");
-    
-    // Asignar el archivo ficticio al campo de entrada de archivo
-    fileInput.files = [file];
-  }
-</script>

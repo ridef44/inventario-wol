@@ -140,7 +140,21 @@
                     <textarea name="comentario" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" rows="4" placeholder="Ingrese los comentarios"></textarea>
                 </div>
 
-                <div class="fontmb-4 col-span-2 place-content-center text-center">
+                    <div class="mb-4 col-span-2">
+                    <label class="block font-medium mb-2">ACTIVO</label>
+                    <input type="radio" name="activo" value="1" class="form-radio h-5 w-5 text-blue-500" checked>
+                    <span class="ml-2">Sí</span>
+                    <input type="radio" name="activo" value="0" class="form-radio h-5 w-5 text-blue-500">
+                    <span class="ml-2">No</span>
+                    </div>
+
+
+                
+                </div>
+
+
+
+                <div class="mb-4 col-span-2 place-content-center text-center">
                      <button type="submit" class="text-2xl mx-8 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md">Enviar</button>
                   &nbsp
 
@@ -158,3 +172,18 @@
         </form>
     </div>
 </body>
+
+<script>
+  const toggleSwitch = document.querySelector('#activoToggle');
+
+  toggleSwitch.addEventListener('change', function() {
+    // Realizar acciones cuando el switch toggle cambia de estado
+    if (toggleSwitch.checked) {
+      // Si el switch está activado
+      console.log('Switch activado');
+    } else {
+      // Si el switch está desactivado
+      console.log('Switch desactivado');
+    }
+  });
+</script>

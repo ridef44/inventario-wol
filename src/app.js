@@ -14,7 +14,6 @@ app.set('port', process.env.PORT || 4000);
 //configuracion de plantillas
 app.set('views', __dirname + '/views');
 
-
 // Configuración de plantillas
 app.set('views', __dirname + '/views');
 app.engine('.hbs', engine({
@@ -24,12 +23,15 @@ app.engine('.hbs', engine({
   helpers: {
     isEqual: function (value1, value2) {
       return value1 === value2;
+    },
+    isEqualValue: function (value1, value2) {
+      return value1 == value2;
     }
   }
-
-  
 }));
 app.set('view engine', '.hbs');
+
+
 
 
 // Configuración de body-parser
@@ -42,6 +44,12 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+// Middleware para verificar si el usuario tiene una sesión iniciada
+app.use(function(req, res, next) {
+  res.locals.isLoggedIn = req.session.loggedIn || false;
+  next();
+});
 
 
 //Conexion a base de datos
