@@ -104,19 +104,17 @@
       <div class="flex justify-end">
         <button
           class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-          onclick="closeModal()"
-        >
+          onclick="closeModal()">
           Cancelar
         </button>
         <form id="deleteForm" method="POST" action="">
           <input type="hidden" name="_method" value="DELETE">
-        <button
-            type="submit"
-            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onclick="showNotification()"
-          >
-            Eliminar
-          </button>
+       <button 
+          type="submit" 
+          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          onclick="confirmDelete(event)" > Eliminar
+</button>
+
         </form>
       </div>
     </div>
@@ -145,20 +143,30 @@
     modal.classList.remove('hidden');
   }
 
-function closeModal() {
-  const modal = document.querySelector('#modal');
-  modal.classList.add('hidden');
-}
+  function closeModal() {
+    const modal = document.querySelector('#modal');
+    modal.classList.add('hidden');
+  }
 
 function showNotification() {
-    const notificacion = document.getElementById('notificacion');
-    notificacion.classList.remove('hidden');
+  const notificacion = document.getElementById('notificacion');
+  notificacion.classList.remove('hidden');
+}
 
-    // Ocultar la notificación después de 3 segundos
-    setTimeout(function() {
-      notificacion.classList.add('hidden');
+function confirmDelete(event) {
+  event.preventDefault();
+
+  const deleteForm = document.querySelector('#deleteForm');
+  closeModal();
+
+  setTimeout(() => {
+    showNotification();
+    setTimeout(() => {
+      deleteForm.submit();
     }, 3000);
-  }
+  }, 100);
+}
+
 
 
 </script>

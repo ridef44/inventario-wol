@@ -2,7 +2,7 @@
     <div class="w-full max-w-screen-md mx-auto mt-20 bg-white p-8 rounded-md shadow-md">
         <p class="text-right text-gray-500 text-xs"> Bienvendo {{name}}</p>
         <h1 class="text-2xl font-semibold mb-6 text-center">Ingreso de Inventario</h1>
-         <form action="" method="POST" class="mt-4" enctype="multipart/form-data">
+         <form id="myForm" action="" method="POST" class="mt-4" enctype="multipart/form-data">
         <!--Aplicacion del RESPONSIVE*/-->
             <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
                 <div class="mb-4">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="mb-4">
                   <label class="block font-medium mb-2">NOMBRE:</label>
-                    <input type="text" name="nombre" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el nombre" />
+                    <input type="text" name="nombre" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el nombre" /required>
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-2">DEPARTAMENTO:</label>
@@ -102,7 +102,7 @@
                 </div>
                  <div class="mb-4">
                     <label class="block font-medium mb-2">FECHA:</label>
-                    <input type="DATE" name="fecha" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro"/required>
+                    <input type="DATE" name="fecha" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese la fecha" /required>
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-2">PROVEEDOR:</label>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-2">USUARIO (S) ANTERIOR:</label>
-                    <input type="text" name="usuario_anterior" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" />
+                    <input type="text" name="usuario_anterior" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro">
                 </div>
                  <div class="mb-4">
                     <label class="block font-medium mb-2">OTROS:</label>
@@ -155,11 +155,15 @@
 
 
                 <div class="mb-4 col-span-2 place-content-center text-center">
-                     <button type="submit" class="text-2xl mx-8 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md">Enviar</button>
+                    <button id="botton" onclick="showNotification(this.form)" type="submit" class="text-2xl mx-8 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md">Ingresar</button>
+
+                     
                   &nbsp
 
-                 <button type="submit" class="text-xl me-8 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">Limpiar</button>
+                 <a id="botton2" href="/index" class="text-xl me-8 bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-md">Regresar</a>
+               
                 </div>
+                
 
                 <div class="col-span-2">
                  
@@ -170,6 +174,20 @@
             
         
         </form>
+
+       <div class="fixed flex items-center hidden justify-between z-10 bottom-0 right-0 mb-4 mr-4 bg-green-500 text-white py-2 px-4 rounded-md" id="notificacion">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 text-green-100 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-sm">Ingreso exitoso</p>
+            </div>
+        </div>
+
+        <!-- NOTIFICACION -->
+
+
+
     </div>
 </body>
 
@@ -186,4 +204,23 @@
       console.log('Switch desactivado');
     }
   });
+
+function showNotification(form) {
+  if (form.checkValidity() && form.getAttribute('data-submitted') !== 'true') {
+    document.getElementById('notificacion').classList.remove('hidden');
+    document.getElementById('botton').classList.add('pointer-events-none');
+    document.getElementById('botton2').classList.add('pointer-events-none');
+    setTimeout(function() {
+      document.getElementById('notificacion').classList.add('hidden');
+      document.getElementById('botton').classList.remove('pointer-events-none');
+      document.getElementById('botton2').classList.remove('pointer-events-none');
+    }, 3000);
+    form.setAttribute('data-submitted', 'true');
+  }
+}
+
+
+
+
+
 </script>

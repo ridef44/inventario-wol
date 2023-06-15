@@ -66,7 +66,6 @@ const storage = multer.diskStorage({
 // Creamos una función que será utilizada para subir los archivos
 const upload = multer({ storage: storage });
 
-// Definimos nuestro controlador para manejar la subida de archivos
 function store(req, res) {
   let filename = '';
   if (req.file) {
@@ -79,11 +78,18 @@ function store(req, res) {
       if (err) {
         console.log(err);
       } else {
-        res.redirect('/index');
+        // Agregar código para mostrar una notificación aquí
+        console.log('El elemento fue creado exitosamente');
+
+        // Retrasar la redirección por 3 segundos
+        setTimeout(() => {
+          res.redirect('/index');
+        }, 3000);
       }
     });
   });
 }
+
 // ---------------FIM DE FUNCION PRINCIPAL DE CREACION DE ELEMENTOS---------------
 
 
