@@ -94,19 +94,7 @@ function store(req, res) {
 
 
 //Controlador para listar los equipos
-/*
-function index(req, res) {
-  req.getConnection((err, conn) => {
-    conn.query('SELECT *, DATE_FORMAT(fecha, "%d-%m-%Y") as fecha FROM inventario', (err, stock) => {
-      if(err) {
-        console.log('HOLA')
-      }
-      res.render('mainViews/list', {stock}); // se corrige el paréntesis que cerraba mal
-  
-    });
-  });
-}
-*/
+
 function index(req, res) {
   if (!req.session.loggedIn) {
     return res.redirect('/');
@@ -118,22 +106,64 @@ function index(req, res) {
       return;
     }
 
-    conn.query('SELECT inventario.*, agencia.nombre AS nombre_agencia FROM inventario INNER JOIN agencia ON inventario.id_agencia = agencia.id', (err, rows) => {
+    const { query } = req.query; // Obtén el valor del parámetro de búsqueda desde la URL
+    let queryError = false;
+
+    if (query && query.length < 3) {
+      queryError = true;
+    }
+
+    getStock(conn, query, (err, stock) => {
       if (err) {
         console.log(err);
         return;
       }
 
-      const stock = rows.map(row => ({
-        ...row,
-        fecha: formatDate(row.fecha) // Formatear la fecha utilizando una función formatDate
-      }));
-
       let name = req.session.nombre;
-      res.render('mainViews/list', { name, stock });
+      res.render('mainViews/list', { name, stock, queryError });
     });
   });
 }
+
+
+function getStock(conn, query, callback) {
+
+  if (query && query.length < 3) {
+    callback(null, []); // Retorna una lista vacía si la búsqueda tiene menos de 3 caracteres
+    return;
+  }
+
+  let sql = 'SELECT inventario.*, agencia.nombre AS nombre_agencia FROM inventario INNER JOIN agencia ON inventario.id_agencia = agencia.id';
+
+  if (query && query.trim() !== '') {
+    // Si hay un valor de búsqueda no vacío, ajusta la consulta SQL para realizar la búsqueda en varios campos
+    sql += ` WHERE inventario.nombre LIKE '%${query}%' 
+                OR inventario.correo LIKE '%${query}%' 
+                OR inventario.serie LIKE '%${query}%' 
+                OR inventario.cpu LIKE '%${query}%' 
+                OR inventario.fecha LIKE '%${query}%' 
+                OR inventario.usuario_anterior LIKE '%${query}%' 
+                OR agencia.nombre LIKE '%${query}%'`;
+  } else {
+    // Si no hay un valor de búsqueda, realiza la paginación por 15 elementos
+    sql += ' ORDER BY inventario.id ASC LIMIT 10';
+  }
+
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      callback(err, null);
+      return;
+    }
+
+    const stock = rows.map((row) => ({
+      ...row,
+      fecha: formatDate(row.fecha), // Formatear la fecha utilizando una función formatDate
+    }));
+
+    callback(null, stock);
+  });
+}
+
 
 
 
@@ -252,7 +282,10 @@ function update(req, res) {
         return res.status(500).send('Error al actualizar el elemento');
       }
 
-      res.redirect('/index');
+      setTimeout(() => {
+        res.redirect('/index');
+      }, 3000);
+
     });
   });
 }

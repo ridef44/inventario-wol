@@ -2,10 +2,21 @@
 <div class="container mx-auto my-12 mt-20">
   <div class="flex flex-col md:flex-row items-center justify-between">
     <h1 class="text-3xl font-bold mb-4">Lista de Equipos</h1>
+     <!-- Busqueda  -->
     <div class="mb-4 md:mb-0">
-      <input type="text" class="border border-gray-300 rounded-md py-2 px-4" placeholder="Buscar Equipo...">
-      <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-md py-2 px-4 ml-4">Buscar</button>
+   <form action="/index" method="GET">
+    <input type="text" class="border border-gray-300 rounded-md py-2 px-4" placeholder="Buscar Equipo..." name="query">
+    <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-md py-2 px-4 ml-4">Buscar</button>
+  </form>
+
+    {{!-- Agrega el mensaje de validación --}}
+      {{#if queryError}}
+        <p class="text-red-500 mt-2">La búsqueda debe tener al menos 3 caracteres.</p>
+      {{/if}}
+
+
     </div>
+     <!-- Busqueda -->
   </div>
   <div class="overflow-x-auto rounded-md">
     <table class="table-auto w-full">
@@ -19,14 +30,14 @@
           <th class="px-4 py-2 text-left">CPU</th>
           <th class="px-4 py-2 text-left">FECHA</th>
           <th class="px-4 py-2 text-left">ANTERIOR</th>
-          <th class="px-4 py-2 text-left">ARCHIVO</th>
+          <th class="px-4 py-2 text-left">ACCIONES</th>
 
 
         </tr>
       </thead>
       <tbody>
    {{#each stock}}
-       <tr>
+       <tr class="{{isEven @index}}">
           <td class="py-3 px-6">{{id}}</td>
           <td class="p-3">{{nombre_agencia}}</td>
           <td class="p-3 text-center">{{nombre}}</td>
@@ -75,11 +86,31 @@
       {{/each}}
       </tbody>
     </table>
+
+<div class="flex items-center justify-center mt-4">
+  <ul class="flex list-reset border border-gray-300 rounded-md">
+    <li>
+      <a href="#" class="block py-2 px-3 text-gray-700 hover:text-white hover:bg-gray-700">1</a>
+    </li>
+    <li>
+      <a href="#" class="block py-2 px-3 text-gray-700 hover:text-white hover:bg-gray-700">2</a>
+    </li>
+    <li>
+      <a href="#" class="block py-2 px-3 text-gray-700 hover:text-white hover:bg-gray-700">3</a>
+    </li>
+    <!-- ... más elementos de paginación ... -->
+  </ul>
+</div>
+
+
+
+    
  
   </div>
   <div class="mt-8">
     <a href="/main" class="bg-blue-500 hover:bg-blue-600 text-white rounded-md py-2 px-4">Agregar</a>
   </div>
+
 
 <!-- Agrega el modal de confirmación -->
 <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden">
@@ -167,11 +198,6 @@ function confirmDelete(event) {
   }, 100);
 }
 
-
-
 </script>
-
-
-
 
 </div>

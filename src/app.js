@@ -26,7 +26,10 @@ app.engine('.hbs', engine({
     },
     isEqualValue: function (value1, value2) {
       return value1 == value2;
-    }
+    },
+    isEven: function(index) {
+      return index % 2 === 0 ? 'bg-gray-200' : 'bg-white';
+    },
   }
 }));
 app.set('view engine', '.hbs');
