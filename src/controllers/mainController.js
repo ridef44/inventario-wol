@@ -85,6 +85,7 @@ function store(req, res) {
         setTimeout(() => {
           res.redirect('/index');
         }, 3000);
+        
       }
     });
   });
@@ -290,25 +291,50 @@ function update(req, res) {
   });
 }
 
+// ... (el resto del código)
+
 function read(req, res) {
   const id = req.params.id;
 
   req.getConnection((err, conn) => {
-    conn.query('SELECT * FROM inventario WHERE id = ?', [id], (err, stock) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).send('Error de servidor');
+    if (err) {
+      console.log(err);
+      return res.status(500).send('Error de servidor');
+    }
+
+    conn.query(
+      'SELECT inventario.*, agencia.nombre AS nombre_agencia FROM inventario INNER JOIN agencia ON inventario.id_agencia = agencia.id WHERE inventario.id = ?',
+      [id],
+      (err, stock) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send('Error de servidor');
+        }
+
+        if (stock.length === 0) {
+          // El registro no fue encontrado, puedes manejarlo aquí si es necesario
+          return res.status(404).send('Registro no encontrado');
+        }
+
+        const formattedStock = {
+          ...stock[0],
+          fecha: formatDate(stock[0].fecha), // Formatear la fecha antes de pasarla al renderizado de la vista
+        };
+
+        // Verificar si el nombre del archivo PDF existe en el objeto "formattedStock"
+        if (formattedStock.filename) {
+          // Renderizar la vista "mainViews/read" con los datos del equipo
+          res.render('mainViews/read', { stock: formattedStock });
+        } else {
+          // Si no hay un nombre de archivo PDF, simplemente renderizamos la vista "mainViews/read" sin la opción de descarga
+          res.render('mainViews/read', { stock: formattedStock, noPdf: true });
+        }
       }
-
-      const formattedStock = {
-        ...stock[0],
-        fecha: formatDate(stock[0].fecha) // Formatear la fecha antes de pasarla al renderizado de la vista
-      };
-
-      res.render('mainViews/read', { stock: formattedStock });
-    });
+    );
   });
 }
+
+
 
 
 

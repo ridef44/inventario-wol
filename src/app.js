@@ -8,6 +8,8 @@ const loginRoutes = require ('./routes/login');
 const mainRoutes = require('./routes/mainRoute');
 const app = express();
 const methodOverride = require('method-override');
+const path = require('path');
+
 
 app.set('port', process.env.PORT || 4000);
 
@@ -65,30 +67,44 @@ app.use (myconnection(mysql, {
 }, 'single'));
 
 
-
-//configuracion de sesion
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
-
 const date = new Date().toString().replace(/:/g, '-');
 app.listen(app.get('port'), () =>{
     console.log('Estamos trabajndo sobre el puerto', app.get('port'));
     //console.log(date)
 });
 
+// Configuración de archivos estáticos
+
+
+
+app.use('/public', express.static(path.join(__dirname, '..', 'public')));
+
+
+
+// Ruta para acceder a los archivos PDF
+app.get('/facturas/:fileName', (req, res) => {
+  const fileName = req.params.fileName;
+  const filePath = path.join(__dirname, 'public', 'facturas', fileName);
+  res.sendFile(filePath);
+});
+
+// Ruta para descargar PDF
+app.post('/facturas/:fileName', (req, res) => {
+  const fileName = req.params.fileName;
+  const filePath = path.join(__dirname, 'public', 'facturas', fileName);
+  res.download(filePath, fileName, (err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send('Error al descargar el archivo PDF');
+    }
+  });
+});
 
 //Configuracion de Rutas
 app.use('/', loginRoutes);
 app.use('/', mainRoutes);
 
-/*
-app.get('/', (req,res) =>{
-    res.render('home');
-});
-*/
+
 
 app.get('/', (req, res) => {
   if (req.session.loggedIn) {
@@ -103,10 +119,12 @@ else {
 }
 );
 
-
+/*
 app.get('/', (req, res)=>{
   res.render('main')
 });
+*/
+
 
 app.use(methodOverride('_method'));
 
