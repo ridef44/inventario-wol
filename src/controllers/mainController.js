@@ -121,14 +121,13 @@ function index(req, res) {
       }
 
       let name = req.session.nombre;
-      res.render('mainViews/list', { name, stock, queryError });
+      res.render('mainViews/list', { name, stock, queryError, query });
     });
   });
 }
 
 
 function getStock(conn, query, callback) {
-
   if (query && query.length < 3) {
     callback(null, []); // Retorna una lista vacía si la búsqueda tiene menos de 3 caracteres
     return;
@@ -164,6 +163,7 @@ function getStock(conn, query, callback) {
     callback(null, stock);
   });
 }
+
 
 
 
@@ -256,19 +256,9 @@ function formatDate(date) {
   return formattedDate;
 }
 
+//Funcion par editar equipo o elementos
 function update(req, res) {
   const itemId = req.params.id; // Obtén el ID del elemento a actualizar
-  let filename = '';
-
-  // Verificar si se ha subido un nuevo archivo
-  if (req.file) {
-    filename = req.file.filename;
-  }
-
-  const newData = {
-    ...req.body,
-    filename: filename
-  };
 
   req.getConnection((err, conn) => {
     if (err) {
@@ -276,20 +266,47 @@ function update(req, res) {
       return res.status(500).send('Error en la conexión a la base de datos');
     }
 
-    // Actualizar los campos en la tabla usando el ID del elemento
-    conn.query('UPDATE inventario SET ? WHERE id = ?', [newData, itemId], (err, result) => {
+    // Obtén el registro actual del elemento que se va a actualizar
+    conn.query('SELECT * FROM inventario WHERE id = ?', itemId, (err, rows) => {
       if (err) {
         console.log(err);
-        return res.status(500).send('Error al actualizar el elemento');
+        return res.status(500).send('Error al obtener el elemento de la base de datos');
       }
 
-      setTimeout(() => {
-        res.redirect('/index');
-      }, 3000);
+      if (rows.length === 0) {
+        return res.status(404).send('El elemento no fue encontrado');
+      }
 
+      // Mantén el nombre del archivo actual como valor predeterminado
+      let filename = rows[0].filename || '';
+
+      // Verificar si se ha subido un nuevo archivo
+      if (req.file) {
+        filename = req.file.filename; // Si se subió un nuevo archivo, actualiza el nombre del archivo
+      }
+
+      const newData = {
+        ...req.body,
+        filename: filename
+      };
+
+      // Actualizar los campos en la tabla usando el ID del elemento
+      conn.query('UPDATE inventario SET ? WHERE id = ?', [newData, itemId], (err, result) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send('Error al actualizar el elemento');
+        }
+
+        setTimeout(() => {
+          res.redirect('/index');
+        }, 3000);
+      });
     });
   });
 }
+
+
+
 
 // ... (el resto del código)
 
