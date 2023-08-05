@@ -6,6 +6,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const loginRoutes = require ('./routes/login');
 const mainRoutes = require('./routes/mainRoute');
+const reportRoutes = require ('./routes/reportRoute')
 const app = express();
 const methodOverride = require('method-override');
 const path = require('path');
@@ -103,6 +104,7 @@ app.post('/facturas/:fileName', (req, res) => {
 //Configuracion de Rutas
 app.use('/', loginRoutes);
 app.use('/', mainRoutes);
+app.use('/', reportRoutes);
 
 
 
