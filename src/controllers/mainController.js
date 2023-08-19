@@ -307,9 +307,6 @@ function update(req, res) {
 
 
 
-
-// ... (el resto del código)
-
 function read(req, res) {
   const id = req.params.id;
 

@@ -1,34 +1,48 @@
-
 <div class="container mx-auto my-12 mt-20">
-
-
-    <div class="container mx-auto p-8">
-
-        <div class="container mx-auto p-8">
+  <div class="container mx-auto p-8">
     <h1 class="text-3xl font-bold mb-6">Generar Reporte Excel</h1>
-    <form class="bg-white p-4 rounded shadow-md">
-        <!--Agregar campos de base de datos-->
+    <form class="bg-white p-4 rounded shadow-md" action="/generate-report" method="POST">
+      <!-- Agregar campo para seleccionar todos -->
+      <div class="mb-4">
+        <label class="block font-medium mb-2">
+          <input type="checkbox" id="select-all" class="mr-2">
+          Seleccionar Todos
+        </label>
+      </div>
+      
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div class="mb-4">
+        <!-- Agregar checkboxes para cada campo -->
+        <div class="mb-2">
+          <label class="block text-sm">
+           
+            <input type="checkbox" name="id" value="id" class="mr-2">
+            ID
+          </label>
+        </div>
+
+         <div class="mb-4">
           <label class="block font-medium mb-2">
-            <input type="checkbox" name="id_agencia" class="mr-2">
+            <input type="checkbox" name="id_agencia" value="id_agencia" class="mr-2">
             AGENCIA
           </label>
         </div>
 
         <div class="mb-4">
           <label class="block font-medium mb-2">
-            <input type="checkbox" name="nombre" class="mr-2">
+           
+            <input type="checkbox" name="nombre" value="nombre" class="mr-2">
             NOMBRE
           </label>
         </div>
 
         <div class="mb-4">
           <label class="block font-medium mb-2">
-            <input type="checkbox" name="departamento" class="mr-2">
+            <input type="checkbox" name="departamento" value="departamento" class="mr-2">
             DEPARTAMENTO
           </label>
         </div>
+
+        <!--  botón para generar el informe
 
         <div class="mb-4">
           <label class="block font-medium mb-2">
@@ -128,71 +142,102 @@
           </label>
         </div>
 
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="mac_address" class="mr-2">
+            MAC ADDRESS
+          </label>
+        </div>
 
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="mac_address_wifi" class="mr-2">
+            MAC ADDRESS WIFI
+          </label>
+        </div>
 
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="factura" class="mr-2">
+            FACTURA
+          </label>
+        </div>
 
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="costo" class="mr-2">
+            COSTO
+          </label>
+        </div>
 
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="fecha" class="mr-2">
+            FECHA
+          </label>
+        </div>
 
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="proveedor" class="mr-2">
+            PROVEEDOR
+          </label>
+        </div>
 
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="via_compra" class="mr-2">
+            VIA DE COMPRA
+          </label>
+        </div>
 
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="garantia" class="mr-2">
+            GARANTIA
+          </label>
+        </div>
 
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="usuario_anterior" class="mr-2">
+            USUARIO ANTERIOR
+          </label>
+        </div>
 
-        <!-- Agrega los otros campos de la misma manera -->
-      </div>
-      <!-- Agrega el botón para generar el informe -->
-      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-md focus:outline-none focus:shadow-outline">Generar Informe</button>
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="otro" class="mr-2">
+            OTRO
+          </label>
+        </div>
+
+        <div class="mb-4">
+          <label class="block font-medium mb-2">
+            <input type="checkbox" name="comentario" class="mr-2">
+            COMENTARIO
+          </label>
+        </div>
+ -->
+
+      
+      <!--  botón para generar el informe -->
+      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-md focus:outline-none focus:shadow-outline">
+        Generar Informe
+      </button>
     </form>
   </div>
- 
-
-  </div>
-
-  <!-- Agregar el script para generar el informe -->
-  <script>
-    function generateReport() {
-      // Obtener los campos seleccionados
-      const fields = Array.from(document.querySelectorAll('input[name="fields"]:checked')).map(input => input.value);
-
-      // Validar que se hayan seleccionado campos
-      if (fields.length === 0) {
-        alert('Debes seleccionar al menos un campo para generar el informe.');
-        return;
-      }
-
-      // Aquí debes hacer una petición al servidor para generar el informe Excel con los campos seleccionados.
-      // Puedes utilizar fetch() para hacer una solicitud POST al servidor con los campos seleccionados.
-
-      // Ejemplo de cómo hacer una solicitud POST con fetch (debes ajustar la URL y el cuerpo de la solicitud según tu backend):
-      fetch('/ruta-al-servidor/generar-informe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ fields: fields })
-      })
-      .then(response => {
-        if (response.ok) {
-          // Si la respuesta del servidor es exitosa, descarga el informe Excel
-          return response.blob();
-        } else {
-          throw new Error('Hubo un error al generar el informe.');
-        }
-      })
-      .then(blob => {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'informe.xlsx'; // Nombre del archivo de descarga
-        a.click();
-        URL.revokeObjectURL(url);
-      })
-      .catch(error => {
-        console.error(error);
-        alert('Hubo un error al generar el informe.');
-      });
-    }
-  </script>
- 
 </div>
 
+<!-- Script para seleccionar todos los checkboxes -->
 
+<script>
+  const selectAllCheckbox = document.getElementById('select-all');
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#select-all)');
+  
+  selectAllCheckbox.addEventListener('change', () => {
+    checkboxes.forEach(checkbox => {
+      checkbox.checked = selectAllCheckbox.checked;
+    });
+  });
+</script>

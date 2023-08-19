@@ -1,0 +1,35 @@
+<div class="container mx-auto p-8">
+  <h1 class="text-3xl font-bold mb-6">Lista de Agencias</h1>
+  
+  <table class="w-full border border-collapse">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="p-2">ID</th>
+        <th class="p-2">Nombre</th>
+        <th class="p-2">Razón Social</th>
+        <th class="p-2">NIT</th>
+        <th class="p-2">Dirección</th>
+        <th class="p-2">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Aquí iterarías sobre las agencias y generarías las filas de la tabla -->
+      <!-- Por ejemplo: -->
+      <!-- <% agencies.forEach(agency => { %> -->
+      <tr>
+        <td class="p-2">1</td>
+        <td class="p-2">Agencia 1</td>
+        <td class="p-2">Razón Social 1</td>
+        <td class="p-2">123456789</td>
+        <td class="p-2">Dirección 1</td>
+        <td class="p-2">
+          <a href="/edit-agency/1" class="text-blue-500 hover:underline">Editar</a>
+        </td>
+      </tr>
+      <!-- <% }); %> -->
+    </tbody>
+  </table>
+  <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-9 rounded focus:outline-none focus:shadow-outline" href="/agencia">
+  AGREGAR
+  </a>
+</div>
