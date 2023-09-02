@@ -12,19 +12,15 @@
       <i class="fas fa-search"></i> Buscar
     </button>
 
-    <a href="/index" class="bg-gray-500 hover:bg-blue-600 text-white rounded-md py-2 px-4 ml-4">
+    <a href="/index" class="bg-gray-500 hover:bg-red-600 text-white rounded-md py-2 px-4 ml-4">
     <i class="fa fa-eraser"></i>
       Limpiar</a>
     </form>
 
-
     {{!-- Agrega el mensaje de validación --}}
-
       {{#if queryError}}
         <p class="text-red-500 mt-2">La búsqueda debe tener al menos 3 caracteres.</p>
       {{/if}}
-
-
     </div>
      <!-- Busqueda -->
   </div>
@@ -41,8 +37,6 @@
           <th class="px-4 py-2 text-left">FECHA</th>
           <th class="px-4 py-2 text-left">ANTERIOR</th>
           <th class="px-4 py-2 text-left">ACCIONES</th>
-
-
         </tr>
       </thead>
       <tbody>
@@ -96,26 +90,26 @@
       </tbody>
     </table>
 
-<div class="flex items-center justify-center mt-4">
-  <ul class="flex list-reset border border-gray-300 rounded-md">
-    <li>
-      <a href="#" class="block py-2 px-3 text-gray-700 hover:text-white hover:bg-gray-700">1</a>
-    </li>
-    <li>
-      <a href="#" class="block py-2 px-3 text-gray-700 hover:text-white hover:bg-gray-700">2</a>
-    </li>
-    <li>
-      <a href="#" class="block py-2 px-3 text-gray-700 hover:text-white hover:bg-gray-700">3</a>
-    </li>
-    <!-- ... más elementos de paginación ... -->
-  </ul>
-</div>
+      <div class="flex items-center justify-center mt-4">
+        <ul class="flex list-reset border border-gray-300 rounded-md">
+          <li>
+            <a href="#" class="block py-2 px-3 text-gray-700 hover:text-white hover:bg-gray-700">1</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 px-3 text-gray-700 hover:text-white hover:bg-gray-700">2</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 px-3 text-gray-700 hover:text-white hover:bg-gray-700">3</a>
+          </li>
+          <!-- ... más elementos de paginación ... -->
+        </ul>
+      </div>
 
 
-  </div>
-  <div class="mt-8">
-    <a href="/main" class="bg-blue-500 hover:bg-blue-600 text-white rounded-md py-2 px-4">Agregar</a>
-  </div>
+      </div>
+        <div class="mt-8">
+        <a href="/main" class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white font-bold rounded-md py-2 px-4">Agregar Inventario</a>
+      </div>
 
 
 <!-- Agrega el modal de confirmación -->
@@ -134,23 +128,23 @@
         </div>
   
       <!-- Contenido del modal -->
-      <div class="mb-4">
-        <h2 class="text-xl font-bold text-gray-800">¿Está seguro?</h2>
-        <p class="text-gray-700">Esta acción no se puede deshacer.</p> <p>{{id}}</p>
-      </div>
-      <div class="flex justify-end">
-        <button
-          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-          onclick="closeModal()">
-          Cancelar
-        </button>
-        <form id="deleteForm" method="POST" action="">
-          <input type="hidden" name="_method" value="DELETE">
-       <button 
-          type="submit" 
-          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          onclick="confirmDelete(event)" > Eliminar
-</button>
+          <div class="mb-4">
+            <h2 class="text-xl font-bold text-gray-800">¿Está seguro?</h2>
+            <p class="text-gray-700">Esta acción no se puede deshacer.</p> <p>{{id}}</p>
+          </div>
+          <div class="flex justify-end">
+            <button
+              class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+              onclick="closeModal()">
+              Cancelar
+            </button>
+            <form id="deleteForm" method="POST" action="">
+              <input type="hidden" name="_method" value="DELETE">
+          <button 
+              type="submit" 
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="confirmDelete(event)" > Eliminar
+            </button>
 
         </form>
       </div>

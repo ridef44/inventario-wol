@@ -10,43 +10,42 @@
                 Nombre:
             </label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            {{#if error}}
-             value="{{data.nombre}}" 
-             {{/if}}           
+             value="{{agencia.nombre}}"  
              name="nombre" type="text" placeholder="Nombre Agencia"/required>
-              {{#if error}}
-                <p class="text-center text-red-500 text-sm">{{error}}</p>
-                {{/if}}
             </div>
 
             <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="razon_social">
                 Razon Social:
             </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="razon_social" type="text" placeholder="Razon Social"/required>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                value="{{agencia.razon_social}}"
+                name="razon_social" type="text" placeholder="Razon Social"/required>
             </div>
 
             <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="nit">
                 NIT:
             </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="nit" type="text" placeholder="NIT"/required>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             value="{{agencia.NIT}}"
+             name="nit" type="text" placeholder="NIT"/required>
             </div>
 
             <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="direccion">
                 Direccion:
             </label>
-            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-            name="direccion" placeholder="Dirección" rows="4"> </textarea>
+             <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            name="direccion" placeholder="Dirección" rows="4">{{agencia.direccion}}</textarea>
             </div>
 
         
             <div  class="flex justify-evenly">
             <button
                 id="botton"
-                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-9 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Ingresar
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-9 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Actualizar
             </button>
 
                 <a id="botton2" href="/listar" 
@@ -55,10 +54,10 @@
 
   
    <!-- NOTIFICACION -->
-                <div class="fixed hidden flex items-center justify-between z-10 bottom-0 right-0 mb-4 mr-4 bg-green-500 text-white py-2 px-4 rounded-md" id="notificacion">
+                   <div class="fixed hidden flex items-center justify-between z-10 bottom-0 right-0 mb-4 mr-4 bg-blue-500 text-white py-2 px-4 rounded-md" id="notificacion">
                 <div class="flex items-center">
                     <i class="fas fa-sync-alt fa-rotate-180 mr-2"></i>
-                    <p class="text-sm">Agencia Agregada</p>
+                    <p class="text-sm">Agencia Actualizada</p>
                 </div>
                 </div>
 

@@ -1,0 +1,130 @@
+
+<div class="container mx-auto my-12 mt-20">
+  <div class="flex flex-col md:flex-row items-center justify-between">
+    <h1 class="text-3xl font-bold mb-4">Lista de Equipos</h1>
+     <!-- Busqueda  -->
+      <div class="mb-4 md:mb-0">
+
+  <form action="/letter" method="GET">
+    <input type="text" class="border border-gray-300 rounded-md py-2 px-4" placeholder="Buscar Equipo..." name="query" value="{{query}}">
+
+    <button class="bg-gray-500 hover:bg-blue-600 text-white rounded-md py-2 px-4 ml-4" type="submit" title="Buscar">
+      <i class="fas fa-search"></i> Buscar
+    </button>
+
+    <a href="/letter" class="bg-gray-500 hover:bg-red-600 text-white rounded-md py-2 px-4 ml-4">
+    <i class="fa fa-eraser"></i>
+      Limpiar</a>
+    </form>
+
+    {{!-- Agrega el mensaje de validación --}}
+      {{#if queryError}}
+        <p class="text-red-500 mt-2">La búsqueda debe tener al menos 3 caracteres.</p>
+      {{/if}}
+    </div>
+     <!-- Busqueda -->
+  </div>
+
+  <div class="overflow-x-auto rounded-md">
+    <table class="table-auto w-full">
+      <thead class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
+        <tr class="rounded-md bg-gray-900 text-white">
+          <th class="px-4 py-2 text-left">ID</th>
+          <th class="px-4 py-2 text-left">AGENCIA</th>
+          <th class="px-4 py-2 text-left">USUARIO</th>
+          <th class="px-4 py-2 text-center">CORREO</th>
+          <th class="px-4 py-2 text-center">SERIE</th>
+          <th class="px-4 py-2 text-center">CPU</th>
+          <th class="px-4 py-2 text-center">STATUS</th>
+          <th class="px-4 py-2 text-center">CARTA</th>
+       
+        </tr>
+      </thead>
+      <tbody>
+   {{#each stock}}
+       <tr class="{{isEven @index}}">
+          <td class="py-3 px-6">{{id}}</td>
+          <td class="p-3">{{nombre_agencia}}</td>
+          <td class="p-3 text-center">{{nombre}}</td>
+          <td class="p-3 text-center">{{correo}}</td>
+          <td class="p-3 text-center">{{serie}}</td>
+          <td class="p-3 text-center">{{cpu}}</td>
+          <td class="p-3 text-center">
+            {{#if activo}}
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-medium bg-green-100 text-green-800 border border-green-500">
+                <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-green-400" fill="currentColor" viewBox="0 0 8 8">
+                  <circle cx="4" cy="4" r="3" />
+                        </svg>
+                        Activo
+                      </span>
+            {{/if}}
+            {{#unless activo}}
+             <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-medium bg-red-100 text-red-800 border border-red-500">
+                    <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-red-400" fill="currentColor" viewBox="0 0 8 8">
+                      <circle cx="4" cy="4" r="3" />
+                    </svg>
+                    Inactivo
+              </span>
+            {{/unless}}
+          </td>
+          
+ 
+          
+        <td class="p-3 flex">
+              <!-- Boton Ver -->
+              <a href="/letter/read/{{id}}" class="
+              {{#unless activo}}
+              pointer-events-none 
+              {{/unless}}
+              bg-indigo-300 text-white px-3 py-1 rounded-lg hover:bg-indigo-800" title="Ver">
+              <i class="far fa-file-alt"></i>
+              </a>
+          </td>
+        </tr>
+
+      {{/each}}
+      </tbody>
+    </table>
+
+ 
+ 
+      </div>
+        <div class="mt-8 flex" >
+          
+        <a href="/agencia" class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white font-bold rounded-md py-2 px-4">Agregar Agencia</a>
+
+           <div class="px-3 py-1"></div>
+      </div>
+
+          
+
+      <!-- NOTIFICACION -->
+      <div class="fixed flex items-center hidden z-10 bottom-0 right-0 mb-4 mr-4 bg-red-500 text-white py-2 px-4 rounded-md" id="notificacion">
+        <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <span class="ml-2">Espere un momento....</span>
+      </div>
+
+
+
+
+<!-- Agrega el script para abrir y cerrar el modal -->
+<script>
+
+
+function showNotification() {
+  const notificacion = document.getElementById('notificacion');
+  notificacion.classList.remove('hidden');
+
+    showNotification();
+    setTimeout(() => {
+      deleteForm.submit();
+    }, 3000);
+  }, 
+
+</script>
+
+</div>

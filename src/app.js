@@ -131,10 +131,3 @@ app.get('/', (req, res)=>{
 
 
 app.use(methodOverride('_method'));
-
-
-
-
-
-
-

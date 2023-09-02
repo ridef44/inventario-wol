@@ -2,22 +2,9 @@
 const multer = require('multer');
 const path = require('path');
 
-//Funcion para renderizar vista de creacion de equipos
-/*
-function create(req, res) {
-  if (req.session.loggedIn) {
-    let name = req.session.nombre;
-    res.render('mainViews/main', {name});
-    // user is logged in.
-      }
-  else {
-    res.redirect('/');
-      // user is not logged in.
-        }
-      }
 
-*/
 //Renderisa la vista principal para crear elementos y extrae los datos de la tabla agencia
+
 function create(req, res) {
   if (req.session.loggedIn) {
     req.getConnection((err, conn) => {
@@ -25,21 +12,18 @@ function create(req, res) {
         console.log(err);
         return res.render('error', { message: 'Error de conexión a la base de datos' });
       }
-
       // Obtener las opciones de agencia desde la tabla "agencia"
       conn.query('SELECT id, nombre FROM agencia', (err, rows) => {
         if (err) {
           console.log(err);
           return res.render('error', { message: 'Error al obtener las opciones de agencia' });
         }
-
         let name = req.session.nombre;
         res.render('mainViews/main', { name, agencias: rows });
       });
     });
   } else {
     res.redirect('/');
-    // user is not logged in.
   }
 }
 
@@ -95,7 +79,6 @@ function store(req, res) {
 
 
 //Controlador para listar los equipos
-
 function index(req, res) {
   if (!req.session.loggedIn) {
     return res.redirect('/');
@@ -119,7 +102,6 @@ function index(req, res) {
         console.log(err);
         return;
       }
-
       let name = req.session.nombre;
       res.render('mainViews/list', { name, stock, queryError, query });
     });
@@ -146,7 +128,7 @@ function getStock(conn, query, callback) {
                 OR agencia.nombre LIKE '%${query}%'`;
   } else {
     // Si no hay un valor de búsqueda, realiza la paginación por 15 elementos
-    sql += ' ORDER BY inventario.id ASC LIMIT 10';
+    sql += ' ORDER BY inventario.id ASC LIMIT 7';
   }
 
   conn.query(sql, (err, rows) => {
@@ -163,10 +145,6 @@ function getStock(conn, query, callback) {
     callback(null, stock);
   });
 }
-
-
-
-
 
 //FUncion para eliminar los elementos
 
@@ -308,6 +286,9 @@ function update(req, res) {
 
 
 function read(req, res) {
+  if (!req.session.loggedIn) {
+    return res.redirect('/');
+  }
   const id = req.params.id;
 
   req.getConnection((err, conn) => {
@@ -334,14 +315,14 @@ function read(req, res) {
           ...stock[0],
           fecha: formatDate(stock[0].fecha), // Formatear la fecha antes de pasarla al renderizado de la vista
         };
-
+        let name = req.session.nombre;
         // Verificar si el nombre del archivo PDF existe en el objeto "formattedStock"
         if (formattedStock.filename) {
           // Renderizar la vista "mainViews/read" con los datos del equipo
-          res.render('mainViews/read', { stock: formattedStock });
+          res.render('mainViews/read', { stock: formattedStock,name });
         } else {
           // Si no hay un nombre de archivo PDF, simplemente renderizamos la vista "mainViews/read" sin la opción de descarga
-          res.render('mainViews/read', { stock: formattedStock, noPdf: true });
+          res.render('mainViews/read', { stock: formattedStock, noPdf: true,name });
         }
       }
     );
@@ -361,6 +342,4 @@ module.exports = {
     edit,
     update,
     read
-  
-
 }

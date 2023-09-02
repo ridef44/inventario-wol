@@ -1,202 +1,153 @@
 <body class="bg-gray-200">
-    <div class="w-full max-w-screen-md mx-auto mt-20 bg-white p-8 rounded-md shadow-md">
-        <p class="text-right text-gray-500 text-xs"> Bienvendo {{name}}</p>
-        <h1 class="text-2xl font-semibold mb-6 text-center">DATOS DEL  EQUIPO</h1>
+    <div class="w-full max-w-screen-xl mx-auto mt-20 bg-white p-5 rounded-md shadow-md">
+        <p class=" hidden text-right text-gray-500 text-xs"> Bienvendo {{name}}</p>
+        <h1 class="text-2xl font-semibold mb-5 text-center">DATOS DEL  EQUIPO</h1>
        
          <form action="/index/edit/{{stock.id}}" method="POST" class="mt-4" enctype="multipart/form-data">
         <!--Aplicacion del RESPONSIVE*/-->
-            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            <div class="grid grid-cols-6 gap-1">
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">AGENCIA:</label>
+                    <label class="block font-medium mb-1">AGENCIA:</label>
                     <input type="text" name="agencia" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese la agencia" value="{{stock.nombre_agencia}}" disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.nombre_agencia}}" disabled>
                     
                 </div>
                 <div class="mb-4">
-                  <label class="block font-medium mb-2">NOMBRE:</label>
+                  <label class="block font-medium mb-1">NOMBRE:</label>
                     <input type="text" name="nombre"  
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el nombre" value="{{stock.nombre}}" disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.nombre}}" disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">DEPARTAMENTO:</label>
+                    <label class="block font-medium mb-1">DEPARTAMENTO:</label>
                     <input type="text" name="departamento" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el departamento" value="{{stock.departamento}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.departamento}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">CORREO:</label>
+                    <label class="block font-medium mb-1">CORREO:</label>
                     <input type="email" name="correo" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el correo" value="{{stock.correo}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.correo}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">SERIE:</label>
+                    <label class="block font-medium mb-1">SERIE:</label>
                     <input type="text" name="serie" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese la serie" value="{{stock.serie}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.serie}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">CPU:</label>
+                    <label class="block font-medium mb-1">CPU:</label>
                     <input type="text" name="cpu" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el CPU" value="{{stock.cpu}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.cpu}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">RAM:</label>
+                    <label class="block font-medium mb-1">RAM:</label>
                     <input type="text" name="ram" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese la RAM" value="{{stock.ram}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.ram}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">DISCO DURO:</label>
+                    <label class="block font-medium mb-1">DISCO DURO:</label>
                     <input type="text" name="disco_duro" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.disco_duro}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.disco_duro}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">MONITOR:</label>
+                    <label class="block font-medium mb-1">MONITOR:</label>
                     <input type="text" name="monitor" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.monitor}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.monitor}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">TECLADO:</label>
+                    <label class="block font-medium mb-1">TECLADO:</label>
                     <input type="text" name="teclado"  
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.teclado}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.teclado}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">MOUSE:</label>
+                    <label class="block font-medium mb-1">MOUSE:</label>
                     <input type="text" name="mouse" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.mouse}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.mouse}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">TABLETA:</label>
+                    <label class="block font-medium mb-1">TABLETA:</label>
                     <input type="text" name="tableta"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.tableta}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.tableta}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">ADAPTADOR:</label>
+                    <label class="block font-medium mb-1">ADAPTADOR:</label>
                     <input type="text" name="adaptador" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.adaptador}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.adaptador}}"disabled>
                 </div>
 
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">SO:</label>
+                    <label class="block font-medium mb-1">SO:</label>
                     <input type="text" name="so"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.so}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.so}}"disabled>
                 </div>
 
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">TIPO DE LICENCIA:</label>
+                    <label class="block font-medium mb-1">TIPO DE LICENCIA:</label>
                     <input type="text" name="licencia"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.licencia}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.licencia}}"disabled>
                 </div>
 
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">DIRECCIÓN IP:</label>
+                    <label class="block font-medium mb-1">DIRECCIÓN IP:</label>
                     <input type="text" name="direccion_ip"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.direccion_ip}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.direccion_ip}}"disabled>
                 </div>
 
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">DIRECCIÓN IP WIFI:</label>
+                    <label class="block font-medium mb-1">DIRECCIÓN IP WIFI:</label>
                     <input type="text" name="direccion_ip_wifi" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.direccion_ip_wifi}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.direccion_ip_wifi}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">MAC ADDRESS:</label>
+                    <label class="block font-medium mb-1">MAC ADDRESS:</label>
                     <input type="text" name="mac_address"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.mac_address}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.mac_address}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">MAC ADDRESS WIFI:</label>
+                    <label class="block font-medium mb-1">MAC ADDRESS WIFI:</label>
                     <input type="text" name="mac_address_wifi" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.mac_address_wifi}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.mac_address_wifi}}"disabled>
                 </div>
                  <div class="mb-4">
-                    <label class="block font-medium mb-2">No FACTURA:</label>
+                    <label class="block font-medium mb-1">No FACTURA:</label>
                     <input type="text" name="factura"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.factura}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.factura}}"disabled>
                 </div>
                  <div class="mb-4">
-                    <label class="block font-medium mb-2">COSTO Q.:</label>
+                    <label class="block font-medium mb-1">COSTO Q.:</label>
                     <input type="number" name="costo" step="0.01" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el costo" value="{{stock.costo}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.costo}}"disabled>
                 </div>
                  <div class="mb-4">
-                    <label class="block font-medium mb-2">FECHA:</label>
+                    <label class="block font-medium mb-1">FECHA:</label>
                     <input type="DATE" name="fecha" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.fecha}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.fecha}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">PROVEEDOR:</label>
+                    <label class="block font-medium mb-1">PROVEEDOR:</label>
                     <input type="text" name="proveedor" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.proveedor}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.proveedor}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">VIA DE COMPRA:</label>
+                    <label class="block font-medium mb-1">VIA DE COMPRA:</label>
                     <input type="text" name="via_compra" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.via_compra}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.via_compra}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">GARANTIA:</label>
+                    <label class="block font-medium mb-1">GARANTIA:</label>
                     <input type="text" name="garantia"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.garantia}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.garantia}}"disabled>
                 </div>
                 <div class="mb-4">
-                    <label class="block font-medium mb-2">USUARIO (S) ANTERIOR (es):</label>
+                    <label class="block font-medium mb-1">USUARIO ANTERIOR:</label>
                     <input type="text" name="usuario_anterior" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{usuario_anterior}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{usuario_anterior}}"disabled>
                 </div>
                  <div class="mb-4">
-                    <label class="block font-medium mb-2">OTROS:</label>
+                    <label class="block font-medium mb-1">OTROS:</label>
                     <input type="text" name="otro" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ingrese el disco duro" value="{{stock.otro}}"disabled>
+                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.otro}}"disabled>
                 </div>
 
-                <!-- Descarga de factura -->
-
- <!-- ... Otras partes de la vista ... -->
-
-<!-- Descarga de factura -->
-<div class="mb-4">
-    <label class="block font-medium mb-2">FACTURA:</label>
-    <div>
-        <!-- Muestra el nombre del archivo -->
-        <p id="selectedFileName" class="text-sm italic font-light text-gray-600 mt-4">{{stock.filename}}</p>
-
-            {{#if stock.filename}}
-        <!-- Botón para abrir el archivo en una nueva pestaña -->
-        <a href="/public/facturas/{{stock.filename}}" target="_blank" class="inline-block mt-2 text-sm bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md">
-            Abrir en Nueva Pestaña
-        </a>
-
-        <!-- Botón para descargar el archivo -->
-        <a href="/public/facturas/{{ stock.filename }}" download class="inline-block mt-2 text-sm bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md">
-            Descargar Archivo
-        </a>
-        {{else}}
-
-        <button disabled class="warning-btn flex items-center text-red-500">
-    <i class="fas fa-exclamation-triangle mr-2"></i>
-    Equipo sin factura
-  </button>
-        {{/if}}
-
-    </div>
-    
-</div>
-<!-- Descarga de factura -->
-
-<!-- ... Otras partes de la vista ... -->
-
-             <!-- Descarga de factura-->
-
-
-       
-                                                                
-                                                    
-                
-
-                <div class="mb-4 col-span-2">
-                    <label class="block font-medium mb-2">COMENTARIOS</label>
-                    <textarea name="comentario" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" rows="4" placeholder="Ingrese los comentarios" disabled>{{stock.comentario}}</textarea>
-                    </div>
-
-                      <div class="mb-4 col-span-2">
+                <div class="mb-4">
                             <label class="block font-medium mb-2">ACTIVO</label>
                             <input type="radio" name="activo" value="1" class="form-radio h-5 w-5 text-blue-500" {{#if stock.activo}}checked{{/if}}>
                             <span class="ml-2">Sí</span>
@@ -204,9 +155,45 @@
                             <span class="ml-2">No</span>
                         </div>
 
+                <!-- Descarga de factura -->
+                <div class="mb-4 col-span-2">
+                    <label class="block font-medium mb-1">FACTURA:</label>
+                    <div>
+                        <!-- Muestra el nombre del archivo -->
+                        <p id="selectedFileName" class="text-sm italic font-light text-gray-600 mt-4">{{stock.filename}}</p>
+
+                            {{#if stock.filename}}
+                        <!-- Botón para abrir el archivo en una nueva pestaña -->
+                        <a href="/public/facturas/{{stock.filename}}" target="_blank" class="inline-block mt-2 text-sm bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md">
+                            Abrir en Nueva Pestaña
+                        </a>
+
+                        <!-- Botón para descargar el archivo -->
+                        <a href="/public/facturas/{{ stock.filename }}" download class="inline-block mt-2 text-sm bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md">
+                            Descargar Archivo
+                        </a>
+                        {{else}}
+
+                        <button disabled class="warning-btn flex items-center text-red-500">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        Equipo sin factura
+                        </button>
+                        {{/if}}
+                    </div>
+                </div>
+                <!-- Descarga de factura -->
+
+                      <div class="mb-4 col-span-2">
+                        <label class="block font-medium mb-1">COMENTARIOS</label>
+                        <textarea name="comentario" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" rows="3" disabled>{{stock.comentario}}</textarea>
+                    </div>
+                
+
+                      
 
 
-                <div class="fontmb-4 col-span-2 place-content-center text-center">
+
+                    <div class="fontmb-4 col-span-2 place-content-center text-center">
                    
                     <a href="/index" class="text-xl me-8 bg-purple-500 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md">Regresar</a>
            

@@ -1,0 +1,127 @@
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+</head>
+<body class="bg-gray-200">
+    <div class="w-8/12 max-w-screen-xl mx-auto mt-20 bg-white p-5 rounded-md shadow">
+        <p class=" hidden text-right text-gray-500 text-xs"> Bienvendo {{name}}</p>
+       
+        <img src="https://portal.wol.group/firmas/wol-media/wol-group.png" width="250" class="py-8" alt="Logo de la Empresa">
+       
+       <h1 class="text-2xl font-semibold mb-5 text-center">CONSTANCIA DE ENTREGA DE EQUIPO</h1>
+
+       <div>
+          <table class="bg-white p-1 rounded-lg table-auto">
+            <tr>
+                <th class="text-left p-1 font-bold">PARA:</th>
+                <td class="p-1">DEFRY JOSUE SOCOP VENTURA</td>
+            </tr>
+
+            <tr>
+                <th class="text-left p-1 font-bold">DE:</th>
+                <td class="p-1">GERSON ALTAN</td>
+            </tr>
+
+            <tr>
+                <th class="text-left p-1 font-bold">EMPRESA:</th>
+                <td class="p-1">OFS</td>
+            </tr>
+
+            <tr>
+                <th class="text-left p-1 font-bold">FECHA:</th>
+                <td class="p-1">08-07-2022</td>
+            </tr>
+        </table>
+
+        <p class="text-justify p-8"> Por este medio se hace constar que el día de hoy se hizo entrega a: DEFRY JOSUE SOCOP VENTURA de una computadora con las siguientes especificaciones.</p>
+        
+
+        <div class="text-center mt-10">
+            <table class="bg-white p-4 rounded-lg shadow-md mx-auto table-auto">
+                <thead>
+                    <tr>
+                        <th class="p-2 text-center bg-black text-white w-1/4">CARACTERISTICAS</th>
+                        <th class="p-2 text-center bg-black text-white w-3/4">DETALLE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class=" p-2">SERIE:</th>
+                        <td class="text-left p-2">DCS98XC</td>
+                    </tr>
+                    <tr>
+                        <th class="text-right p-2">MODELO/CPU:</th>
+                        <td class="text-left p-2">DELL LATITUDE 7420 Core i7-1165G7 2.80 GHz</td>
+                    </tr>
+                    <tr>
+                        <th class="p-2">RAM:</th>
+                        <td class="text-left p-2">16 GB RAM</td>
+                    </tr>
+                    <tr>
+                        <th class="p-2">DISCO:</th>
+                        <td class="text-left p-2">512 GB SSD M.2</td>
+                    </tr>
+                    <tr>
+                        <th class="p-2">MONITOR:</th>
+                        <td class="text-left p-2">INTEGRADO</td>
+                    </tr>
+                    <tr>
+                        <th class="p-2">TECLADO:</th>
+                        <td class="text-left p-2">INTEGRADO</td>
+                    </tr>
+                    <tr>
+                        <th class="p-2">MOUSE:</th>
+                        <td class="text-left p-2">INTEGRADO</td>
+                    </tr>
+                    <tr>
+                        <th class="p-2">ADAPTADOR:</th>
+                        <td class="text-left p-2">CN-0FPC2Y-CH200-81M-0FKD-A03</td>
+                    </tr>
+                    <tr>
+                        <th class="p-2">TABLET:</th>
+                        <td class="text-left p-2">N/A</td>
+                    </tr>
+                    <tr>
+                        <th class="p-2">OTROS:</th>
+                        <td class="text-left p-2"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    
+            <p class="text-justify p-8"> Dicho equipo fue entregado en buenas condiciones y previamente configurado acorde a sus necesidades laborales..</p>
+        
+    
+
+          <div class="text-center mt-10">
+            <table class="bg-white p-4 rounded-lg shadow-md mx-auto table-auto">
+                <!-- ... (contenido de la tabla) ... -->
+            </table>
+            
+            <div class="mt-6 flex justify-between">
+                <div class="w-1/2">
+                    <hr class="border-t border-gray-500 mb-1">
+                    <p class="text-xs text-gray-700">Firma del receptor</p>
+                </div>
+                <div class="px-28" > &nbsp; </div>
+                <div class="w-1/2">
+                    <hr class="border-t border-gray-500 mb-1">
+                    <p class="text-xs text-gray-700">Firma del entregador</p>
+                </div>
+            </div>
+        </div>
+
+             <!-- Botón para generar PDF -->
+                <div class="text-center mt-8">
+                    <button id="generarPDF" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+            Generar PDF
+        </button>
+                </div>
+         
+
+      
+    </div>
+</body>
+
+

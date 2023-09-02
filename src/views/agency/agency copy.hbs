@@ -14,43 +14,43 @@
              value="{{data.nombre}}" 
              {{/if}}           
              name="nombre" type="text" placeholder="Nombre Agencia"/required>
-              {{#if error}}
-                <p class="text-center text-red-500 text-sm">{{error}}</p>
-                {{/if}}
             </div>
 
             <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="razon_social">
                 Razon Social:
             </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="razon_social" type="text" placeholder="Razon Social"/required>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="razon_social" type="text" placeholder="Razon Social">
             </div>
 
             <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="nit">
                 NIT:
             </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="nit" type="text" placeholder="NIT"/required>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="nit" type="text" placeholder="NIT">
             </div>
 
             <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="direccion">
                 Direccion:
             </label>
-            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-            name="direccion" placeholder="Dirección" rows="4"> </textarea>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="direccion" type="text" placeholder="Dirección">
             </div>
 
         
             <div  class="flex justify-evenly">
             <button
                 id="botton"
-                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-9 rounded focus:outline-none focus:shadow-outline" type="submit">
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-9 rounded focus:outline-none focus:shadow-outline" type="submit">
                 Ingresar
             </button>
 
                 <a id="botton2" href="/listar" 
                 class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-9 rounded focus:outline-none focus:shadow-outline">Cancelar</a>
+
+        
+
+        
         </form>
 
   
@@ -63,13 +63,15 @@
                 </div>
 
                   {{#if error}}
-                <div class="fixed flex items-center justify-between z-10 bottom-0 right-0 mb-4 mr-4 bg-red-500 text-white py-2 px-4 rounded-md" id="error">
+                <div class="fixed flex items-center justify-between z-10 bottom-0 right-0 mb-4 mr-4 bg-red-500 text-white py-2 px-4 rounded-md" id="notificacion2">
                     <div class="flex items-center">
                     <i class="fas fa-times-circle mr-2"></i>
                     <p class="text-sm">{{error}}</p>
                     </div>
                 </div>
                 {{/if}}
+
+  <!-- NOTIFICACION -->
 
     <!-- NOTIFICACION DE ERROR 
                 {{#if error}}
@@ -82,17 +84,22 @@
                 {{/if}}
    NOTIFICACION DE ERROR -->
 
+
+
 </div>
+
 <script>
  function showNotification(form) {
   if (form.checkValidity() && form.getAttribute('data-submitted') !== 'true') {
-    
     document.getElementById('notificacion').classList.remove('hidden');
     document.getElementById('botton').classList.add('pointer-events-none');
     document.getElementById('botton2').classList.add('pointer-events-none');
     document.getElementById('mainDiv').classList.add('bg-gray-100');
     document.getElementById('mainDiv2').classList.add('bg-gray-100');
-    document.getElementById('error').classList.add('hidden');
+ 
+    /*
+    ;
+    */
 
     setTimeout(function() {
     document.getElementById('notificacion').classList.add('hidden');
@@ -100,6 +107,8 @@
     document.getElementById('botton2').classList.remove('pointer-events-none');
     document.getElementById('mainDiv').classList.remove('bg-gray-100');
     document.getElementById('mainDiv2').classList.remove('bg-gray-100');
+      /*
+      */
     }, 3000);
 
     form.setAttribute('data-submitted', 'true');

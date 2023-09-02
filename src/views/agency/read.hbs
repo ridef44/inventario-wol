@@ -1,0 +1,52 @@
+<div id="mainDiv" class="block mx-auto my-20 p-8 bg-white w-1/3 border border-gray-200 rounded-lg shadow-lg" >
+    <h1 class="text-2xl py-2 font-bold text-center">
+        Ingreso de Agencia
+    </h1>
+
+    <div  class="w-full py-2 block mx-auto">
+        <form id="mainDiv2" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="" method="POST" onsubmit="return showNotification(this)">
+            <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
+                Nombre:
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            value="{{agencia.nombre}}" 
+            name="nombre" type="text" placeholder="Nombre Agencia"/disabled>
+            </div>
+
+            <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="razon_social">
+                Razon Social:
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+            value="{{agencia.razon_social}}"
+            name="razon_social" type="text" placeholder="Razon Social"/disabled>
+            </div>
+
+            <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="nit">
+                NIT:
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+            value="{{agencia.NIT}}"
+            name="nit" type="text" placeholder="NIT"/disabled>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="direccion">
+                    Direccion:
+                </label>
+                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            name="direccion" placeholder="Dirección" rows="4"/disabled>{{agencia.direccion}}</textarea>
+            </div>
+
+
+        
+            <div  class="flex justify-evenly">
+
+                <a id="botton2" href="/listar" 
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-9 rounded focus:outline-none focus:shadow-outline">Regresar</a>
+        </form>
+
+  
+</div>
