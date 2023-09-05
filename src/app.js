@@ -13,6 +13,7 @@ const methodOverride = require('method-override');
 const path = require('path');
 
 
+
 app.set('port', process.env.PORT || 4000);
 
 //configuracion de plantillas
@@ -80,6 +81,8 @@ app.listen(app.get('port'), () =>{
 
 
 app.use('/public', express.static(path.join(__dirname, '..', 'public')));
+app.use('/images', express.static(path.join(__dirname, '/views/img')));
+
 
 
 
@@ -101,6 +104,8 @@ app.post('/facturas/:fileName', (req, res) => {
     }
   });
 });
+
+
 
 //Configuracion de Rutas
 app.use('/', loginRoutes);

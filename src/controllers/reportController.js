@@ -1,6 +1,8 @@
 
-const excel = require('exceljs');
 const db = require('express-myconnection'); // Importa la biblioteca que utilizas para la base de datos
+const puppeteer = require('puppeteer');
+
+
 
 function index (req, res){
     if (!req.session.loggedIn) {
@@ -122,6 +124,7 @@ function carta_read(req, res) {
           ...stock[0],
           fecha: formatDate(stock[0].fecha), // Formatear la fecha antes de pasarla al renderizado de la vista
         };
+        
         let name = req.session.nombre;
         res.render('report/carta_pdf', { stock: formattedStock,name });
   
@@ -130,9 +133,96 @@ function carta_read(req, res) {
   });
 }
 
+
+async function crearDOC(url) {
+
+  // Abrir el navegador
+  let navegador = await puppeteer.launch();
+
+  // Creamos una nueva pestaña o pagina
+  let pagina = await navegador.newPage();
+
+  // Abrir la url dentro de esta pagina
+  await pagina.goto(url);
+
+  // Vamos a crear nuestro PDF
+  let pdf = await pagina.pdf();
+
+  // Cerrar el navegador
+  navegador.close();
+
+  return pdf;
+}
+
+
+
+function createPDF(req, res) {
+
+  const id = req.params.id;
+  //const url = `${req.protocol}://${req.get('host')}/letter/read/${id}`;
+  const url = `${req.protocol}://${req.get('host')}/letter/pdf/${id}`;
+  
+  crearDOC(url)
+    .then((pdf) => {
+      // Configurar la respuesta con el PDF generado
+      res.contentType('application/pdf');
+      res.send(pdf);
+   
+
+    })
+    .catch((error) => {
+      console.error('Error al generar el PDF:', error);
+      res.status(500).send('Error al generar el PDF');
+    });
+}
+
+
+//Funcion de formato para exportar pdf sin layout
+function vista(req, res) {
+
+  const id = req.params.id;
+
+  req.getConnection((err, conn) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send('Error de servidor');
+    }
+
+    conn.query(
+      'SELECT inventario.*, agencia.nombre AS nombre_agencia FROM inventario INNER JOIN agencia ON inventario.id_agencia = agencia.id WHERE inventario.id = ?',
+      [id],
+      (err, stock) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send('Error de servidor');
+        }
+
+        if (stock.length === 0) {
+          // El registro no fue encontrado, puedes manejarlo aquí si es necesario
+          return res.status(404).send('Registro no encontrado');
+        }
+
+        const formattedStock = {
+          ...stock[0],
+          fecha: formatDate(stock[0].fecha), // Formatear la fecha antes de pasarla al renderizado de la vista
+        };
+        
+       
+        res.render('report/vista', { stock: formattedStock, layout:false });
+  
+      }
+    );
+  });
+}
+
+
   module.exports = {
     index,
     liststock,
     getStock,
-    carta_read
+    carta_read,
+    crearDOC,
+    createPDF,
+    vista
+
     }
