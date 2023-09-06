@@ -1,118 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <style type="text/css">
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Tw Cen MT', sans-serif;
-        }
-
-        #container {
-            max-width: 8.5in; /* Ancho máximo para hoja carta (letter) */
-            margin: 0 auto; /* Centrar el contenido horizontalmente */
-            padding: 20px;
-            text-align: center; /* Centrar el texto horizontalmente */
-        }
-
-        #header img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        h2 {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #dddddd;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: black;
-            color: white;
-        }
-
-        label {
-            display: block;
-            margin-top: 20px;
-        }
-
-        #firma {
-            width: 100px;
-            height: 100px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/images/styles.css">
 </head>
-<body>
-    <div id="container">
-        <div id="header">
-            <img src="/images/group 1.png" width="150" alt="Logo de la Empresa">
-        </div>
-        <h2>CONSTANCIA DE ENTREGA DE EQUIPO</h2>
-        <table>
-            <tr>
-                <th>PARA:</th>
-                <td>DEFRY JOSUE SOCOP VENTURA</td>
-            </tr>
-            <tr>
-                <th>DE:</th>
-                <td>GERSON ALTAN</td>
-            </tr>
-            <tr>
-                <th>EMPRESA:</th>
-                <td>OFS</td>
-            </tr>
-            <tr>
-                <th>FECHA:</th>
-                <td>08-07-2022</td>
-            </tr>
-        </table>
-        <label>
-            Por este medio se hace constar que el día de hoy se hizo entrega a:
-            <b>DEFRY JOSUE SOCOP VENTURA</b> de una computadora con las siguientes especificaciones.
-        </label>
-        <table>
-            <tr>
-                <th>TIPO DE EQUIPO</th>
-                <th>DETALLE</th>
-            </tr>
-            <tr>
-                <td>SERIE:</td>
-                <td>DCS98XC</td>
-            </tr>
-            <tr>
-                <td>MODELO/CPU:</td>
-                <td>DELL LATITUDE 7420 Core i7-1165G7 2.80 GHz</td>
-            </tr>
-            <!-- Agrega las demás filas aquí -->
-        </table>
-        <label>
-            Dicho equipo fue entregado en buenas condiciones y previamente configurado acorde a sus necesidades laborales.
-        </label>
-        <label>
-            <b>DEFRY JOSUE SOCOP VENTURA</b>
+
+    <div class="pdf-content" class="">
+      
+       
+        <img class="logo" src="/images/wol-group.png" width="150" class="" alt="Logo de la Empresa">
+       
+        <h1 class="encabezado">CONSTANCIA DE ENTREGA DE EQUIPO</h1>
+
+        <div>
+            <table class="tabla1">
+                <tr>
+                    <th >PARA:</th>
+                    <td class="">{{stock.nombre}}</td>
+                </tr>
+
+                <tr>
+                    <th class="text-left p-0 font-bold">DE:</th>
+                    <td class="p-0">GERSON ALTÁN</td>
+                </tr>
+
+                <tr>
+                    <th class="text-left p-0 font-bold">EMPRESA:</th>
+                    <td class="p-0">{{stock.nombre_agencia}}</td>
+                </tr>
+
+                <tr>
+                    <th class="text-left p-0 font-bold">FECHA:</th>
+                    <td class="p-0">{{stock.fecha_actual}}</td>
+                </tr>
+            </table>
+
+            <p class="parrafo">Por este medio se hace constar que el día de hoy se hizo entrega a: <b>{{stock.nombre}}</b> de una computadora con las siguientes especificaciones.</p>
+        
+            <div class="text-center pt-2">
+                <table class="carta2">
+                    <thead>
+                        <tr>
+                            <th class="strech">ESPECIFIC. TEC.</th>
+                            <th>DETALLE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td >SERIE:</td>
+                            <td >{{stock.serie}}</td>
+                        </tr>
+                        <tr>
+                            <td >MODELO/CPU:</td>
+                            <td >{{stock.cpu}}</td>
+                        </tr>
+                        <tr>
+                            <td >RAM:</td>
+                            <td >{{stock.ram}}</td>
+                        </tr>
+                        <tr>
+                            <td >DISCO:</td>
+                            <td >{{stock.disco_duro}}</td>
+                        </tr>
+                        <tr>
+                            <td >MONITOR:</td>
+                            <td >{{stock.monitor}}</td>
+                        </tr>
+                        <tr>
+                            <td >TECLADO:</td>
+                            <td >{{stock.teclado}}</td>
+                        </tr>
+                        <tr>
+                            <td >MOUSE:</td>
+                            <td >{{stock.mouse}}</td>
+                        </tr>
+                        <tr>
+                            <td >ADAPTADOR:</td>
+                            <td >{{stock.adaptador}}</td>
+                        </tr>
+                        <tr>
+                            <td >TABLET:</td>
+                            <td class="text-left p-0">{{stock.tableta}}</td>
+                        </tr>
+                        <tr>
+                            <td >OTROS:</td>
+                            <td >{{stock.otro}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <p class="parrafo">Dicho equipo fue entregado en buenas condiciones y previamente configurado acorde a sus necesidades laborales.</p>
             <br>
-            _________________________________
-        </label>
-        <label>
-            <b>GERSON ALTAN:</b>
-            <br>
-            <img id="firma" src="img/f_galtan.png" alt="Firma de Gerson Altan">
-        </label>
+
+            <div  class="firmas-container">
+                <!-- FIRMA 1-->
+                <div   class="firma">
+                    <div class="espacio">
+                        <img src="/images/f_galtan.png" width="100" class="">
+                    </div>
+                    <p class="">GERSON ALTÁN</p>
+                 </div>
+                    <div class="" > &nbsp; </div>
+                     <!-- FIRMA 1-->
+                <div  class="firma">
+                    <div class="espacio">
+                        <!-- Espacio para la segunda firma -->
+                    </div>
+                    <p class="">{{stock.nombre}}</p>
+                </div>
+           
+                </div>
+
+
+
     </div>
-</body>
+
 </html>

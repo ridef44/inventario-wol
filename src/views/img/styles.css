@@ -1,0 +1,118 @@
+/* Estilos generales */
+html {
+    -webkit-print-color-adjust: exact;
+  }
+
+  
+body {
+    background-color: #edf2f7;
+    font-family: 'Tw Cen MT', sans-serif;
+}
+
+.logo {
+
+    width: auto;
+    height: 85px;
+    padding: 5px;
+}
+
+.encabezado {
+    text-align: center;
+    font-size: 20px;
+    margin: 40px;
+}
+
+td, th {
+    
+    text-align: left;
+    padding: 2px;
+    font-size: 14px;
+}
+
+.parrafo {
+    
+    text-align: justify;
+    font-size: 14px;
+    text-indent: 45px;
+    line-height: 1.8;
+}
+.tabla1{
+padding: 5px;
+}
+
+.pdf-content {
+    max-width: 612px; /* 8.5 pulgadas para una página carta o letter */
+    max-height: 791px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Estilos generales para la tabla */
+.carta2 {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 1em;
+    overflow: hidden;
+    
+}
+
+/* Estilos para las celdas de encabezado (th) */
+.carta2 th {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* Estilos para las celdas de datos (td) */
+.carta2 td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+    font-size: 12px;
+}
+
+/* Estilos para filas impares */
+.carta2 tr:nth-child(odd) {
+    background-color: #ffff;
+}
+
+/* Estilos para filas pares */
+.carta2 tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Establece el ancho para la columna deseada */
+.strech {
+   width: 120px;
+   font-weight:bolder;
+}
+
+.firmas-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.firma {
+    width: 40%; /* Ancho de linea de firma */
+
+    text-align: center;
+
+}
+
+.espacio{
+    height: 85px;
+    border-bottom: 1px solid black;
+}
+
+
+.linea-firma {
+    width: 100%;
+    
+    margin-bottom: 10px;
+}
+
+.nombre-firma {
+    font-weight: bold;
+}

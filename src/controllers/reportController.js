@@ -100,6 +100,15 @@ function carta_read(req, res) {
   }
   const id = req.params.id;
 
+  // Obtén la fecha actual
+  const fechaActual = new Date();
+  
+  // Formatea la fecha actual en "dd-mm-yyyy"
+  const dia = fechaActual.getDate().toString().padStart(2, '0');
+  const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0');
+  const anio = fechaActual.getFullYear();
+  const fechaFormateada = `${dia}-${mes}-${anio}`;
+
   req.getConnection((err, conn) => {
     if (err) {
       console.log(err);
@@ -122,7 +131,9 @@ function carta_read(req, res) {
 
         const formattedStock = {
           ...stock[0],
-          fecha: formatDate(stock[0].fecha), // Formatear la fecha antes de pasarla al renderizado de la vista
+          fecha: formatDate(stock[0].fecha), 
+          agencia: stock[0].nombre_agencia, // Formatear la fecha antes de pasarla al renderizado de la vista
+          fecha_actual: fechaFormateada,
         };
         
         let name = req.session.nombre;
@@ -182,6 +193,15 @@ function vista(req, res) {
 
   const id = req.params.id;
 
+   // Obtén la fecha actual
+   const fechaActual = new Date();
+  
+   // Formatea la fecha actual en "dd-mm-yyyy"
+   const dia = fechaActual.getDate().toString().padStart(2, '0');
+   const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0');
+   const anio = fechaActual.getFullYear();
+   const fechaFormateada = `${dia}-${mes}-${anio}`;
+
   req.getConnection((err, conn) => {
     if (err) {
       console.log(err);
@@ -204,7 +224,9 @@ function vista(req, res) {
 
         const formattedStock = {
           ...stock[0],
-          fecha: formatDate(stock[0].fecha), // Formatear la fecha antes de pasarla al renderizado de la vista
+          fecha: formatDate(stock[0].fecha), 
+          agencia: stock[0].nombre_agencia, // Formatear la fecha antes de pasarla al renderizado de la vista
+          fecha_actual: fechaFormateada,
         };
         
        

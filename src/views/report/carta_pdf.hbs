@@ -3,42 +3,42 @@
     <div id="pdf-content" class="w-5/12 max-w-screen-xl mx-auto mt-14 bg-white p-5 rounded-md shadow">
         <p class=" hidden text-right text-gray-500 text-xs"> Bienvendo {{name}}</p>
        
-        <img src="/images/group 1.png" width="150" class="" alt="Logo de la Empresa">
+        <img src="/images/wol-group.png" width="150" class="" alt="Logo de la Empresa">
        
-       <h1 class="text-lg font-semibold mb-0 text-center">CONSTANCIA DE ENTREGA DE EQUIPO</h1>
+       <h1 class="text-lg font-semibold mb-0 text-center py-4">CONSTANCIA DE ENTREGA DE EQUIPO</h1>
 
        <div>
             <table class="text-xs bg-white p-0 rounded-lg table-auto px-8">
                 <tr >
                     <th class="text-left p-0 font-bold">PARA:</th>
-                    <td class="p-1">{{stock.nombre}}</td>
+                    <td class="p-0">{{stock.nombre}}</td>
                 </tr>
 
                 <tr>
                     <th class="text-left p-0 font-bold">DE:</th>
-                    <td class="p-1">GERSON ALTAN</td>
+                    <td class="p-0">GERSON ALTAN</td>
                 </tr>
 
                 <tr>
                     <th class="text-left p-0 font-bold">EMPRESA:</th>
-                    <td class="p-1">{{agencia.nombre}}</td>
+                    <td class="p-0">{{stock.nombre_agencia}}</td>
                 </tr>
 
                 <tr>
                     <th class="text-left p-0 font-bold">FECHA:</th>
-                    <td class="p-1">08-07-2022</td>
+                    <td class="p-0">{{stock.fecha_actual}}</td>
                 </tr>
             </table>
 
             <p class="text-xs text-justify px-8 pt-1"> Por este medio se hace constar que el día de hoy se hizo entrega a: <b>{{stock.nombre}}</b>  de una computadora con las siguientes especificaciones.</p>
         
 
-        <div class="text-center pt-1">
-           <table class="text-xs bg-white p-2 rounded-lg shadow-md mx-auto table-auto border border-gray-200">
+        <div class="text-center pt-2 rounded-md">
+           <table class="text-xs bg-white p-2 rounded-md shadow-md mx-auto table-auto border border-gray-200">
                     <thead>
                         <tr>
-                        <th class="p-21text-center bg-black text-white w-1/4">CARACTERISTICAS</th>
-                        <th class="p-1 text-center bg-black text-white w-3/4">DETALLE</th>
+                        <th class="rounded-md p-21text-center bg-black text-white w-1/4">ESPECIFIC. TEC.</th>
+                        <th class="rounded-md p-1 text-center bg-black text-white w-3/4">DETALLE</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,8 +80,8 @@
                         <td class="text-left p-0">{{stock.tableta}}</td>
                         </tr>
                         <tr>
-                        <th class="border border-gray-300 bg-gray-100 p-0">OTROS:</th>
-                        <td class="border border-gray-300 bg-gray-100 text-left p-0">{{stock.otro}}</td>
+                        <th class="rounded-md border border-gray-300 bg-gray-100 p-0">OTROS:</th>
+                        <td class="rounded-md border border-gray-300 bg-gray-100 text-left p-0">{{stock.otro}}</td>
                         </tr>
                     </tbody>
                     </table>
