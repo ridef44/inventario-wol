@@ -1,8 +1,9 @@
+    <!--  botón para generar el informe
 <div class="container mx-auto my-12 mt-20">
   <div class="container mx-auto p-8">
     <h1 class="text-3xl font-bold mb-6">Generar Reporte Excel</h1>
     <form class="bg-white p-4 rounded shadow-md" action="/generate-report" method="POST">
-      <!-- Agregar campo para seleccionar todos -->
+     
       <div class="mb-4">
         <label class="block font-medium mb-2">
           <input type="checkbox" id="select-all" class="mr-2">
@@ -11,7 +12,7 @@
       </div>
       
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <!-- Agregar checkboxes para cada campo -->
+
         <div class="mb-2">
           <label class="block text-sm">
            
@@ -42,7 +43,7 @@
           </label>
         </div>
 
-        <!--  botón para generar el informe
+    
 
         <div class="mb-4">
           <label class="block font-medium mb-2">
@@ -218,10 +219,10 @@
             COMENTARIO
           </label>
         </div>
- -->
+
 
       
-      <!--  botón para generar el informe -->
+
       <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-md focus:outline-none focus:shadow-outline">
         Generar Informe
       </button>
@@ -229,7 +230,6 @@
   </div>
 </div>
 
-<!-- Script para seleccionar todos los checkboxes -->
 
 <script>
   const selectAllCheckbox = document.getElementById('select-all');
@@ -241,3 +241,20 @@
     });
   });
 </script>
+-->
+
+<body>
+    <div class="flex justify-center h-screen mt-20">
+        <div class="text-center mt-10">
+            <i data-feather="settings" class="w-24 h-24 mx-auto mb-4 text-gray-500"></i>
+            <h1 class="text-4xl font-bold mb-4">¡Sitio En Construcción!</h1>
+           
+              
+       
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
