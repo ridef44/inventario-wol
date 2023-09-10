@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install --only=prod
 
 # Copia el resto de los archivos de la aplicación al directorio de trabajo
-COPY . .
+COPY src/ ./
 
 # Expone el puerto en el que la aplicación va a escuchar
 EXPOSE 4000
