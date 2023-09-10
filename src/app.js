@@ -94,7 +94,7 @@ app.get('/facturas/:fileName', (req, res) => {
 });
 
 // Ruta para descargar PDF
-app.post('/facturas/:fileName', (req, res) => {
+app.post('public/facturas/:fileName', (req, res) => {
   const fileName = req.params.fileName;
   const filePath = path.join(__dirname, 'public', 'facturas', fileName);
   res.download(filePath, fileName, (err) => {
