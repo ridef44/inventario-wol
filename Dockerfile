@@ -1,8 +1,7 @@
 FROM node:18.13.0-alpine
 
 # Instala Chromium
-RUN apk update && apk add chromium-browser
-
+RUN apk add --no-cache chromium-browser
 # Crea un volumen para los datos de Puppeteer
 VOLUME /var/lib/puppeteer
 
@@ -18,8 +17,14 @@ RUN npm install --production
 # Copia el resto de los archivos de la aplicación al directorio de trabajo
 COPY src/ ./
 
+# Copia la carpeta public/ al contenedor Docker
+COPY public/ ./public
+
 # Expone el puerto en el que la aplicación va a escuchar
 EXPOSE 4000
 
 # Inicia el contenedor con las opciones de Puppeteer
 CMD ["node", "app.js", "--privileged=true", "--ipc=host"]
+
+# Crea un volumen para los archivos PDF
+VOLUME /app/public/facturas
