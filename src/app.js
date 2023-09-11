@@ -87,7 +87,7 @@ app.use('/images', express.static(path.join(__dirname, '/views/img')));
 
 
 // Ruta para acceder a los archivos PDF
-app.get('/facturas/:fileName', (req, res) => {
+app.get('public/facturas/:fileName', (req, res) => {
   const fileName = req.params.fileName;
   const filePath = path.join(__dirname, 'public', 'facturas', fileName);
   res.sendFile(filePath);
