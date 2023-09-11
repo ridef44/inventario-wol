@@ -1,7 +1,7 @@
 FROM node:18.13.0-alpine
 
 # Instala Chromium
-RUN apk add --no-cache chromium-browser
+RUN apk add --no-cache chromium
 # Crea un volumen para los datos de Puppeteer
 VOLUME /var/lib/puppeteer
 
