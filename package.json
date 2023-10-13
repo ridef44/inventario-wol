@@ -28,6 +28,7 @@
     "nodemon": "^2.0.22",
     "path": "^0.12.7",
     "puppeteer": "^21.1.1",
+    "tailwindcss": "^3.3.3",
     "xlsx": "^0.18.5"
   }
 }
