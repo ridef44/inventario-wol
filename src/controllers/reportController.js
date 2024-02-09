@@ -147,8 +147,8 @@ function carta_read(req, res) {
 
 async function crearDOC(url) {
 
-  // Abrir el navegador
-  let navegador = await puppeteer.launch();
+// Abrir el navegador
+  let navegador = await puppeteer.launch({ headless: "new" });
 
   // Creamos una nueva pestaña o pagina
   let pagina = await navegador.newPage();

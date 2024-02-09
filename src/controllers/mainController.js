@@ -63,7 +63,7 @@ function store(req, res) {
         console.log(err);
       } else {
         // Agregar código para mostrar una notificación aquí
-        console.log('El elemento fue creado exitosamente');
+        
 
         // Retrasar la redirección por 3 segundos
         setTimeout(() => {
@@ -163,7 +163,7 @@ function destroy(req, res) {
         return res.status(500).send('Error de servidor');
       }
 
-      console.log(`Eliminado el registro con id: ${id}`);
+      
       res.redirect('/index');
     });
   });

@@ -32,6 +32,11 @@
 
       <ul class="w-1/2 px-16 ml-auto flex justify-end pt-1">
        {{#if name}}
+
+        <li class="nav-item px-4">
+          <a href="#" onclick="goBack()" class="nav-link font-semibold border-2 border-red hover:bg-indigo-800 text-white py-3 px-4 rounded-md">Regresar</a>
+      </li>
+
         <li class="nav-item px-4">
           <a href="/logout" class="nav-link font-semibold border-2 border-red hover:bg-red-300 hover:text-black py-3
             px-4 rounded-md">Salir</a>
@@ -49,11 +54,12 @@
         <li class="nav-item px-4">
           <a href="/login" class="nav-link font-semibold hover:bg-gray-700 py-3 px-4 rounded-md">Login</a>
         </li>
-
+      <!--
         <li class="nav-item px-4">
           <a href="/register" class="nav-link font-semibold border-2 border-white hover:bg-white hover:text-black py-3
             px-4 rounded-md">Registro</a>
         </li>
+        -->
 
         {{/if}}
       </ul>
@@ -264,5 +270,9 @@
       }
 
       openSidebar();
+
+       function goBack() {
+        window.history.back();
+    }
     </script>
 </html>
