@@ -150,21 +150,26 @@ async function crearDOC(url) {
 // Abrir el navegador
   let navegador = await puppeteer.launch({ headless: "new" });
 
-  // Creamos una nueva pestaña o pagina
-  let pagina = await navegador.newPage();
+ // Creamos una nueva pestaña o pagina
+ const pagina = await navegador.newPage();
 
+ try {
   // Abrir la url dentro de esta pagina
   await pagina.goto(url);
 
-  // Vamos a crear nuestro PDF
-  let pdf = await pagina.pdf();
+  // Esperar a que la página se cargue completamente (opcional)
+  // await pagina.waitForNavigation({ waitUntil: 'networkidle0' });
 
-  // Cerrar el navegador
-  navegador.close();
+  // Vamos a crear nuestro PDF
+  const pdf = await pagina.pdf();
 
   return pdf;
+} 
+finally {
+  // Cerrar el navegador después de completar la generación del PDF
+  await navegador.close();
 }
-
+}
 
 
 function createPDF(req, res) {
