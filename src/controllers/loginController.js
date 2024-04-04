@@ -29,7 +29,7 @@ const bcrypt = require('bcrypt');
             else{
               req.session.loggedIn = true;
 	            req.session.nombre = element.nombre;
-              console.log("Hola " + (data.correo) );
+             
               res.redirect('/');
               
             }

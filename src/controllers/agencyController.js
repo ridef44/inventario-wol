@@ -52,7 +52,7 @@ function getAgencyById(req, res) {
       const agencia = agenciaResult[0];
       let name = req.session.nombre;
       res.render('agency/read', { agencia,name });
-      console.log(id);
+    
     });
   });
 }
@@ -106,7 +106,7 @@ function edit(req, res) {
       let name = req.session.nombre;
       const agencia = agenciaResult[0];
       res.render('agency/edit', { agencia, name });
-      console.log(id);
+     
     });
   });
 }
@@ -165,7 +165,7 @@ function destroy(req, res) {
           return res.status(500).send('Error de servidor');
         }
 
-        console.log(`Eliminado el registro con id: ${id}`);
+        
         res.redirect('/listar');
       });
     });
