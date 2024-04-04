@@ -4,9 +4,6 @@ const jsPDF = require('jspdf');
 const router = express.Router();
 
 
-//ruta para mostrar reportes
-router.get('/report', mainController.index);
-
 //listar equipos para carta de enterga
 router.get('/letter', mainController.liststock)
 

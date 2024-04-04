@@ -8,6 +8,8 @@ const loginRoutes = require ('./routes/login');
 const mainRoutes = require('./routes/mainRoute');
 const reportRoutes = require ('./routes/reportRoute')
 const agencyRoutes = require ('./routes/agencyRoute')
+const exportRoutes = require ('./routes/exportRoute')
+
 const app = express();
 const methodOverride = require('method-override');
 const path = require('path');
@@ -112,6 +114,7 @@ app.use('/', loginRoutes);
 app.use('/', mainRoutes);
 app.use('/', reportRoutes);
 app.use('/', agencyRoutes);
+app.use('/', exportRoutes);
 
 
 

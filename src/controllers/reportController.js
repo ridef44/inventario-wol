@@ -4,16 +4,6 @@ const puppeteer = require('puppeteer');
 
 
 
-function index (req, res){
-    if (!req.session.loggedIn) {
-        return res.redirect('/');
-      }
-    else{
-        let name = req.session.nombre;
-        res.render('report/report',{name})
-    }
-}
-
 //Listar inventario para imprimir carta de entrega
 
 function liststock(req, res) {
@@ -244,7 +234,7 @@ function vista(req, res) {
 
 
   module.exports = {
-    index,
+
     liststock,
     getStock,
     carta_read,
