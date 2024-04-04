@@ -1,7 +1,7 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
 const myconnection = require('express-myconnection');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const loginRoutes = require ('./routes/login');
@@ -14,6 +14,9 @@ const app = express();
 const methodOverride = require('method-override');
 const path = require('path');
 
+const dotenv = require ('dotenv');
+
+dotenv.config({path:'.env'})
 
 
 app.set('port', process.env.PORT || 4000);
@@ -63,12 +66,12 @@ app.use(function(req, res, next) {
 
 
 //Conexion a base de datos
-app.use (myconnection(mysql, {
-  host: '127.0.0.1',
-  user: 'devops',
-  password: 'admin',
+app.use(myconnection(mysql, {
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   port: 3306,
-  database: 'inventario'
+  database: process.env.DB_DATABASE,
 }, 'single'));
 
 
