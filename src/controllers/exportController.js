@@ -16,36 +16,37 @@ function exportToCsv(req, res) {
     const csvWriter = createCsvWriter({
         path: 'csv_inventario_all.csv',
         header: [
-          {id: 'id', title: 'ID'},
-          {id: 'nombre_agencia', title: 'Agencia'}, //
-          {id: 'nombre', title: 'Nombre'},
-          {id: 'departamento', title: 'Departamento'},
-          {id: 'correo', title: 'Correo'},
-          {id: 'serie', title: 'Serie'},
-          {id: 'cpu', title: 'CPU'},
-          {id: 'ram', title: 'RAM'},
-          {id: 'disco_duro', title: 'Disco Duro'},
-          {id: 'monitor', title: 'Monitor'},
-          {id: 'teclado', title: 'Teclado'},
-          {id: 'mouse', title: 'Mouse'},
-          {id: 'tableta', title: 'Tableta'},
-          {id: 'adaptador', title: 'Adaptador'},
-          {id: 'so', title: 'Sistema Operativo'},
-          {id: 'licencia', title: 'Licencia'},
-          {id: 'direccion_ip', title: 'Dirección IP'},
-          {id: 'direccion_ip_wifi', title: 'Dirección IP WiFi'},
-          {id: 'mac_address', title: 'MAC Address'},
-          {id: 'mac_address_wifi', title: 'MAC Address WiFi'},
-          {id: 'factura', title: 'Factura'},
-          {id: 'costo', title: 'Costo'},
-          {id: 'fecha', title: 'Fecha'},
-          {id: 'proveedor', title: 'Proveedor'},
-          {id: 'via_compra', title: 'Vía de Compra'},
-          {id: 'garantia', title: 'Garantía'},
-          {id: 'usuario_anterior', title: 'Usuario Anterior'},
-          {id: 'otro', title: 'Otros'}, 
-          {id: 'comentario', title: 'Comentarios'}, 
-          {id: 'activo', title: 'Activo'}
+          {id: 'id', title: 'id'},
+          {id: 'id_agencia', title: 'id_agencia'}, //
+          {id: 'nombre', title: 'nombre'},
+          {id: 'departamento', title: 'departamento'},
+          {id: 'correo', title: 'correo'},
+          {id: 'serie', title: 'serie'},
+          {id: 'cpu', title: 'cpu'},
+          {id: 'ram', title: 'ram'},
+          {id: 'disco_duro', title: 'disco_duro'},
+          {id: 'monitor', title: 'monitor'},
+          {id: 'teclado', title: 'teclado'},
+          {id: 'mouse', title: 'mouse'},
+          {id: 'tableta', title: 'tableta'},
+          {id: 'adaptador', title: 'adaptador'},
+          {id: 'so', title: 'so'},
+          {id: 'licencia', title: 'licencia'},
+          {id: 'direccion_ip', title: 'direccion_ip'},
+          {id: 'direccion_ip_wifi', title: 'direccion_ip_wifi'},
+          {id: 'mac_address', title: 'mac_address'},
+          {id: 'mac_address_wifi', title: 'mac_address_wifi'},
+          {id: 'factura', title: 'factura'},
+          {id: 'costo', title: 'costo'},
+          {id: 'fecha', title: 'fecha'},
+          {id: 'proveedor', title: 'proveedor'},
+          {id: 'via_compra', title: 'via_compra'},
+          {id: 'garantia', title: 'garantia'},
+          {id: 'usuario_anterior', title: 'usuario_anterior'},
+          {id: 'comentario', title: 'comentario'},
+          {id: 'otro', title: 'otro'}, 
+          {id: 'activo', title: 'activo'},
+          {id: 'filename', title: 'filename'}
         ]
     });
 
@@ -74,14 +75,6 @@ function exportToCsv(req, res) {
     });
 }
 
-function formatDate(date) {
-  const currentDate = new Date(date);
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const day = String(currentDate.getDate()).padStart(2, '0');
-  const formattedDate = `${year}-${month}-${day}`;
-  return formattedDate;
-}
 
 //Exportar con checks seleccionados
 function exportSelectedFieldsToCsv(req, res) {
@@ -144,16 +137,45 @@ function formatDate(date) {
     const year = currentDate.getFullYear();
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const day = String(currentDate.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
+  }
+
+
+function exportAgency(req, res) {
+    const csvWriter = createCsvWriter({
+        path: 'csv_agency.csv',
+        header: [
+          {id: 'id', title: 'id'},
+          {id: 'nombre', title: 'nombre'},
+          {id: 'razon_social', title: 'razon_social'},
+          {id: 'direccion', title: 'direccion'},
+          {id: 'NIT', title: 'NIT'}
+        ]
+    });
+
+    req.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).send('Error de servidor');
+        }
+        conn.query('SELECT * FROM agencia;', (err, rows) => {
+            if (err) {
+                return res.status(500).send('Error al consultar la base de datos');
+            }
+            csvWriter.writeRecords(rows)
+                .then(() => {
+                    res.download('csv_agency.csv', 'AGENCIA.csv');
+                });
+        });
+    });
 }
-
-
 
 
 
   module.exports = {
     index,
     exportToCsv,
-    exportSelectedFieldsToCsv
+    exportSelectedFieldsToCsv,
+    exportAgency
   
     }

@@ -7,9 +7,13 @@ const router = express.Router();
 router.get('/report', mainController.index);
 router.get('/export-csv', mainController.exportToCsv)
 
+//Ruta para exportar agencias
+router.get('/export-agency', mainController.exportAgency)
+
 
 // En tus rutas, usando POST para la nueva funcionalidad
 router.post('/export-selected', mainController.exportSelectedFieldsToCsv);
+
 
 
 module.exports = router;
