@@ -76,10 +76,12 @@ app.use(myconnection(mysql, {
 
 
 const date = new Date().toString().replace(/:/g, '-');
+
 app.listen(app.get('port'), () =>{
     console.log('Estamos trabajndo sobre el puerto', app.get('port'));
     //console.log(date)
 });
+
 
 // Configuración de archivos estáticos
 

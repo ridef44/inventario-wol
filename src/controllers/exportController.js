@@ -44,7 +44,7 @@ function exportToCsv(req, res) {
           {id: 'garantia', title: 'garantia'},
           {id: 'usuario_anterior', title: 'usuario_anterior'},
           {id: 'comentario', title: 'comentario'},
-          {id: 'otro', title: 'otro'}, 
+          {id: 'accesorio', title: 'accesorio'}, 
           {id: 'activo', title: 'activo'},
           {id: 'filename', title: 'filename'}
         ]
