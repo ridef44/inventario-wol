@@ -9,11 +9,9 @@ const mainRoutes = require('./routes/mainRoute');
 const reportRoutes = require ('./routes/reportRoute')
 const agencyRoutes = require ('./routes/agencyRoute')
 const exportRoutes = require ('./routes/exportRoute')
-
 const app = express();
 const methodOverride = require('method-override');
 const path = require('path');
-
 const dotenv = require ('dotenv');
 
 dotenv.config({path:'.env'})
@@ -43,8 +41,6 @@ app.engine('.hbs', engine({
   }
 }));
 app.set('view engine', '.hbs');
-
-
 
 
 // Configuración de body-parser
@@ -84,13 +80,8 @@ app.listen(app.get('port'), () =>{
 
 
 // Configuración de archivos estáticos
-
-
-
 app.use('/public', express.static(path.join(__dirname, '..', 'public')));
 app.use('/images', express.static(path.join(__dirname, '/views/img')));
-
-
 
 
 // Ruta para acceder a los archivos PDF
@@ -113,14 +104,12 @@ app.post('public/facturas/:fileName', (req, res) => {
 });
 
 
-
 //Configuracion de Rutas
 app.use('/', loginRoutes);
 app.use('/', mainRoutes);
 app.use('/', reportRoutes);
 app.use('/', agencyRoutes);
 app.use('/', exportRoutes);
-
 
 
 app.get('/', (req, res) => {
