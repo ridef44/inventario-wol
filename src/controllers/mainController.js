@@ -125,7 +125,9 @@ function getStock(conn, query, callback) {
                 OR inventario.cpu LIKE '%${query}%' 
                 OR inventario.fecha LIKE '%${query}%' 
                 OR inventario.usuario_anterior LIKE '%${query}%' 
+                OR inventario.factura LIKE '%${query}%' 
                 OR agencia.nombre LIKE '%${query}%'`;
+                
   } else {
     // Si no hay un valor de búsqueda, realiza la paginación por 15 elementos
     sql += ' ORDER BY inventario.id ASC LIMIT 7';
