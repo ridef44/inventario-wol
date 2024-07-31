@@ -1,209 +1,172 @@
 <body class="bg-gray-200">
-    <div class="w-full max-w-screen-xl mx-auto mt-20 bg-white p-5 rounded-md shadow-md">
-        <p class=" hidden text-right text-gray-500 text-xs"> Bienvendo {{name}}</p>
-        <h1 class="text-2xl font-semibold mb-5 text-center">DATOS DEL  EQUIPO</h1>
+    <div class="w-full max-w-screen-xl mx-auto mt-20 bg-white p-6 rounded-md shadow-md">
+        <p class="hidden text-right text-gray-500 text-xs">Bienvenido {{name}}</p>
+        <h1 class="text-xl font-semibold mb-5 text-center">DATOS DEL EQUIPO</h1>
        
-         <form action="/index/edit/{{stock.id}}" method="POST" class="mt-4" enctype="multipart/form-data">
-        <!--Aplicacion del RESPONSIVE*/-->
-            <div class="grid grid-cols-6 gap-1 text-xs">
-                <div class="mb-4">
+        <form action="/index/edit/{{stock.id}}" method="POST" class="mt-4" enctype="multipart/form-data">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs"> <!-- gap-4 para más separación horizontal -->
+                <div class="mb-2"> <!-- mb-2 para reducir la separación vertical -->
                     <label class="block font-medium mb-1">AGENCIA:</label>
-                    <input type="text" name="agencia" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.nombre_agencia}}" disabled>
-                    
+                    <input type="text" name="agencia" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.nombre_agencia}}" disabled>
                 </div>
-                <div class="mb-4">
-                  <label class="block font-medium mb-1">NOMBRE:</label>
-                    <input type="text" name="nombre"  
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.nombre}}" disabled>
+                <div class="mb-2">
+                    <label class="block font-medium mb-1">NOMBRE:</label>
+                    <input type="text" name="nombre" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.nombre}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">DEPARTAMENTO:</label>
-                    <input type="text" name="departamento" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.departamento}}"disabled>
+                    <input type="text" name="departamento" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.departamento}}" disabled>
                 </div>
-                <div class="mb-4">
+                
+                <div class="mb-2 relative">
+                    <label for="passwordField" class="block font-medium mb-1">CONTRASEÑA:</label>
+                    <div class="relative flex items-center">
+                        <input type="password" id="passwordField" name="pass_p" class="w-full px-2 py-1 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500" value="{{stock.pass_p}}">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 px-3 flex items-center text-sm leading-5">
+                            <i class="bi bi-eye-fill" style="font-size: 16px;"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="mb-2">
                     <label class="block font-medium mb-1">CORREO:</label>
-                    <input type="email" name="correo" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.correo}}"disabled>
+                    <input type="email" name="correo" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.correo}}" disabled>
                 </div>
-                <div class="mb-4">
+           
+                <div class="mb-2">
+                    <label class="block font-medium mb-1">CORREO SECUNDARIO:</label>
+                    <input type="email" name="correo_s" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.correo_s}}" disabled>
+                </div>
+                <div class="mb-2">
                     <label class="block font-medium mb-1">SERIE:</label>
-                    <input type="text" name="serie" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.serie}}"disabled>
+                    <input type="text" name="serie" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.serie}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">CPU:</label>
-                    <input type="text" name="cpu" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.cpu}}"disabled>
+                    <input type="text" name="cpu" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.cpu}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">RAM:</label>
-                    <input type="text" name="ram" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.ram}}"disabled>
+                    <input type="text" name="ram" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.ram}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">DISCO DURO:</label>
-                    <input type="text" name="disco_duro" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.disco_duro}}"disabled>
+                    <input type="text" name="disco_duro" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.disco_duro}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">MONITOR:</label>
-                    <input type="text" name="monitor" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.monitor}}"disabled>
+                    <input type="text" name="monitor" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.monitor}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">TECLADO:</label>
-                    <input type="text" name="teclado"  
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.teclado}}"disabled>
+                    <input type="text" name="teclado" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.teclado}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">MOUSE:</label>
-                    <input type="text" name="mouse" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.mouse}}"disabled>
+                    <input type="text" name="mouse" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.mouse}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">TABLETA:</label>
-                    <input type="text" name="tableta"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.tableta}}"disabled>
+                    <input type="text" name="tableta" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.tableta}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">ADAPTADOR:</label>
-                    <input type="text" name="adaptador" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.adaptador}}"disabled>
+                    <input type="text" name="adaptador" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.adaptador}}" disabled>
                 </div>
-
-                <div class="mb-4">
-                    <label class="block font-medium mb-1">SO:</label>
-                    <input type="text" name="so"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.so}}"disabled>
-                </div>
-
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">TIPO DE LICENCIA:</label>
-                    <input type="text" name="licencia"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.licencia}}"disabled>
+                    <input type="text" name="licencia" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.licencia}}" disabled>
                 </div>
-
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">DIRECCIÓN IP:</label>
-                    <input type="text" name="direccion_ip"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.direccion_ip}}"disabled>
+                    <input type="text" name="direccion_ip" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.direccion_ip}}" disabled>
                 </div>
-
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">DIRECCIÓN IP WIFI:</label>
-                    <input type="text" name="direccion_ip_wifi" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.direccion_ip_wifi}}"disabled>
+                    <input type="text" name="direccion_ip_wifi" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.direccion_ip_wifi}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">MAC ADDRESS:</label>
-                    <input type="text" name="mac_address"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.mac_address}}"disabled>
+                    <input type="text" name="mac_address" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.mac_address}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">MAC ADDRESS WIFI:</label>
-                    <input type="text" name="mac_address_wifi" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.mac_address_wifi}}"disabled>
+                    <input type="text" name="mac_address_wifi" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.mac_address_wifi}}" disabled>
                 </div>
-                 <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">No FACTURA:</label>
-                    <input type="text" name="factura"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.factura}}"disabled>
+                    <input type="text" name="factura" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.factura}}" disabled>
                 </div>
-                 <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">COSTO Q.:</label>
-                    <input type="number" name="costo" step="0.01" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.costo}}"disabled>
+                    <input type="number" name="costo" step="0.01" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.costo}}" disabled>
                 </div>
-                 <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">FECHA:</label>
-                    <input type="DATE" name="fecha" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.fecha}}"disabled>
+                    <input type="date" name="fecha" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.fecha}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">PROVEEDOR:</label>
-                    <input type="text" name="proveedor" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.proveedor}}"disabled>
+                    <input type="text" name="proveedor" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.proveedor}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">VIA DE COMPRA:</label>
-                    <input type="text" name="via_compra" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.via_compra}}"disabled>
+                    <input type="text" name="via_compra" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.via_compra}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">GARANTIA:</label>
-                    <input type="text" name="garantia"
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.garantia}}"disabled>
+                    <input type="text" name="garantia" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.garantia}}" disabled>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">USUARIO ANTERIOR:</label>
-                    <input type="text" name="usuario_anterior" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.usuario_anterior}}"disabled>
+                    <input type="text" name="usuario_anterior" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.usuario_anterior}}" disabled>
                 </div>
-                 <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">ACCESORIOS:</label>
-                    <input type="text" name="accesorio" 
-                    class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.accesorio}}"disabled>
+                    <input type="text" name="accesorio" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" value="{{stock.accesorio}}" disabled>
                 </div>
 
-                <div class="mb-4">
-                            <label class="block font-medium mb-2">ACTIVO</label>
-                            <input type="radio" name="activo" value="1" class="form-radio h-5 w-5 text-blue-500" {{#if stock.activo}}checked{{/if}}>
-                            <span class="ml-2">Sí</span>
-                            <input type="radio" name="activo" value="0" class="form-radio h-5 w-5 text-blue-500" {{#unless stock.activo}}checked{{/unless}}>
-                            <span class="ml-2">No</span>
-                        </div>
+                <div class="mb-2 flex items-center justify-center"> <!-- Añadido flex, items-center, y justify-center -->
+                    <label class="block font-medium mb-1 mr-2">ACTIVO</label>
+                    <input type="radio" name="activo" value="1" class="form-radio h-4 w-4 text-blue-500" {{#if stock.activo}}checked{{/if}}>
+                    <span class="ml-2 mr-4">Sí</span>
+                    <input type="radio" name="activo" value="0" class="form-radio h-4 w-4 text-blue-500" {{#unless stock.activo}}checked{{/unless}}>
+                    <span class="ml-2">No</span>
+                </div>
+
 
                 <!-- Descarga de factura -->
-                <div class="mb-4 col-span-2">
+                <div class="mb-2">
                     <label class="block font-medium mb-1">FACTURA:</label>
                     <div>
                         <!-- Muestra el nombre del archivo -->
-                        <p id="selectedFileName" class="text-sm italic font-light text-gray-600 mt-4">{{stock.filename}}</p>
-
-                            {{#if stock.filename}}
+                        <p id="selectedFileName" class="text-sm italic font-light text-gray-600 mt-2">{{stock.filename}}</p>
+                        {{#if stock.filename}}
                         <!-- Botón para abrir el archivo en una nueva pestaña -->
-                        <a href="/public/facturas/{{stock.filename}}" target="_blank" class="inline-block mt-2 text-sm bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md">
-                            Abrir en Nueva Pestaña
+                        <a href="/public/facturas/{{stock.filename}}" target="_blank" class="inline-block mt-2 text-sm bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-3 rounded-md">
+                            Nueva Pestaña
                         </a>
-
                         <!-- Botón para descargar el archivo -->
-                        <a href="/public/facturas/{{ stock.filename }}" download class="inline-block mt-2 text-sm bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md">
-                            Descargar Archivo
+                        <a href="/public/facturas/{{stock.filename}}" download class="inline-block mt-2 text-sm bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-3 rounded-md">
+                            Descargar
                         </a>
                         {{else}}
-
                         <button disabled class="warning-btn flex items-center text-red-500">
-                        <i class="fas fa-exclamation-triangle mr-2"></i>
-                        Equipo sin factura
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            Equipo sin factura
                         </button>
                         {{/if}}
                     </div>
                 </div>
                 <!-- Descarga de factura -->
-
-                      <div class="mb-4 col-span-2">
-                        <label class="block font-medium mb-1">COMENTARIOS</label>
-                        <textarea name="comentario" class="w-full px-4 py-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" rows="3" disabled>{{stock.comentario}}</textarea>
-                    </div>
-                
-
-                      
-
-
-
-                    <div class="fontmb-4 col-span-2 place-content-center text-center">
-                   
-                    <a href="/index" class="text-xl me-8 bg-purple-500 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md">Regresar</a>
-           
+                <div class="mb-2">
+                    <label class="block font-medium mb-1">COMENTARIOS</label>
+                    <textarea name="comentario" class="w-full px-2 py-1 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" rows="3" disabled>{{stock.comentario}}</textarea>
+                </div>
+                <div class="mb-2 text-center p-6">
+                    <a href="/index" class="text-sm bg-purple-500 hover:bg-purple-800 text-white font-semibold py-4 px-6 rounded-md">Regresar</a>
                 </div>
             </div>
-                  
-            
-        
         </form>
-      
     </div>
 </body>
 
@@ -220,5 +183,17 @@
     fileInput.files = [file];
   }
 
-  
+ function togglePasswordVisibility() {
+    var passwordField = document.getElementById('passwordField');
+    var icon = document.querySelector('.bi'); 
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        icon.classList.add('bi-eye-slash-fill');
+        icon.style.color = 'red';  
+    } else {
+        passwordField.type = 'password';
+        icon.classList.remove('bi-eye-slash-fill');
+        icon.style.color = 'green'; 
+    }
+}
 </script>

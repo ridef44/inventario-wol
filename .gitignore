@@ -1,3 +1,4 @@
-
+/node_modules
+/public/facturas
 csv_inventario.csv
 csv_inventario_all.csv

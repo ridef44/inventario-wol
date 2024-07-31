@@ -1,18 +1,18 @@
 
-<div  class="container mx-auto my-12 mt-20 ">
+<div  class="container mx-auto mt-24 p-4">
   <div class="flex flex-col md:flex-row items-center justify-between ">
     <h1 class="text-3xl font-bold mb-4">Exportar Informe</h1>
   </div>
 
 
-  <div class="grid grid-rows-4 grid-flow-col gap-4 rounded-md border mb-4"> <!-- Añade mb-4 o mb-8 para margen abajo -->
+  <div class="grid grid-rows-2 grid-flow-col gap-4 rounded-md border mb-4"> <!-- Añade mb-4 o mb-8 para margen abajo -->
     <!-- Botón de exportar a CSV -->
     <a href="/export-csv" 
     class="block mx-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
     id="botton">Exportar Inventario</a>
 </div>
 
-<div class="grid grid-rows-4 grid-flow-col gap-4 rounded-md border mt-4"> <!-- Añade mt-4 o mt-8 para margen arriba -->
+<div class="grid grid-rows-2 grid-flow-col gap-4 rounded-md border mt-4"> <!-- Añade mt-4 o mt-8 para margen arriba -->
     <!-- Botón de exportar a CSV -->
     <a href="/export-agency" 
     class="block mx-auto bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
@@ -53,6 +53,14 @@
             <label for="correo">Correo</label>
         </div>
         <div class="flex items-center">
+            <input type="checkbox" id="correo" name="campos[]" value="pass_p" class="mr-2">
+            <label for="pass_p">Contraseña</label>
+        </div>
+         <div class="flex items-center">
+            <input type="checkbox" id="correo" name="campos[]" value="correo_s" class="mr-2">
+            <label for="correo_s">Correo Secundario</label>
+        </div>
+        <div class="flex items-center">
             <input type="checkbox" id="serie" name="campos[]" value="serie" class="mr-2">
             <label for="serie">Serie</label>
         </div>
@@ -88,10 +96,7 @@
             <input type="checkbox" id="adaptador" name="campos[]" value="adaptador" class="mr-2">
             <label for="adaptador">Adaptador</label>
         </div>
-        <div class="flex items-center">
-            <input type="checkbox" id="so" name="campos[]" value="so" class="mr-2">
-            <label for="so">Sistema Operativo</label>
-        </div>
+   
         <div class="flex items-center">
             <input type="checkbox" id="licencia" name="campos[]" value="licencia" class="mr-2">
             <label for="licencia">Licencia</label>
