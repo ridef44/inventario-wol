@@ -1,5 +1,6 @@
-/node_modules
 /public/facturas
+/node_modules
 csv_inventario.csv
 csv_inventario_all.csv
 csv_agency.csv
+.DS_Store
